@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import { useContext } from 'react'
 import styled, { ThemeContext } from 'styled-components'
 // styles and assets
-import { ReactComponent as ErrorLogo } from 'assets/images/error.svg'
+// import { ReactComponent as ErrorLogo } from 'assets/images/error.svg'
 
 interface IProps {
   message: string | boolean
@@ -56,7 +56,7 @@ const Error = ({ message, hideIcon, title, btnText, btnClassName, btnLink, bgCol
   return (
     <Wrapper data-test="errorComponent">
       <div>
-        {!hideIcon && <ErrorLogo fill={iconColor} width="150" height="150" />}
+        {/* {!hideIcon && <ErrorLogo fill={iconColor} width="150" height="150" />} */}
 
         {title && <h2>{title}</h2>}
 

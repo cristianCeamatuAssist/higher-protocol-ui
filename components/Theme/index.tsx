@@ -57,6 +57,4 @@ interface IProps {
   children: JSX.Element[] | JSX.Element
 }
 
-const Theme = ({ children }: IProps) => <ThemeProvider theme={theme}>{children}</ThemeProvider>
-
-export default Theme
+export const Theme = ({ children }: IProps) => <ThemeProvider theme={theme}>{children}</ThemeProvider>
