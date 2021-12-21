@@ -1,59 +1,141 @@
-# :exclamation: Mandatory step :exclamation:
+# [TO_FILL:Short project description]
 
-- Do a global search in your preferred code editor and search for the string `TO_FILL:`, then replace all the results with your project details. **Make sure that the bucket name used in `deploy.yml` line 55 is the same as the bucket name defined in `s3-bucket.tf` lines 2 and 11.**
-- Delete this block of text after you finish
-
-# [TO_FILL:RepositoryNameAndShortDescription]
-
-This repository includes the components of the [TO_FILL:ServiceName] service. [TO_FILL:Description]
-
-The service is part of the following products:
-- [TO_FILL:ListOfProducts-https://outboundai.atlassian.net/wiki/spaces/OM/pages/810647553/Component+Inventory]
+> We recommend visiting the app from a desktop/notebook because it is not mobile responsive
+> 
+<!-- 
+## Core functionality
+****
+- Users can securely login in the app
+- Users can add call through a form or by uploading a CSV file
+- Users can filter/sort/search the call list
+- Users can start calls and see the transcript of the conversation between the Virtual Agent and the contact
+- Users can listen the audio stream of the conversation
+- Users can edit/ignore Virtual Agents responses, they can Take Over the conversation or Transfer the call to their phone number
+- Users can collect valuable information when the call ends -->
+  ## Table of Contents
+  - [Prerequisites](#prerequisites)
+  - [Getting Started](#getting-started)
+      - [Demo users](#demo-users)
+      - [Demo phone numbers](#demo-phone-numbers)
+  - [Built With](#built-with)
+  - [Live links](#live-links)
+  - [Tests](#tests)
+      - [Tested with](#tested-with)
+      - [All Tests (e2e and unit tests)](#all-tests-e2e-and-unit-tests)
+      - [Unit Tests](#unit-tests)
+      - [E2E Tests](#e2e-tests)
+  - [Files and Folder Structure Conventions](#files-and-folder-structure-conventions)
+  - [Useful links](#useful-links)
+      - [IVR Simulator phone numbers](#ivr-simulator-phone-numbers)
+      - [Confluence](#confluence)
+      - [Project design links](#project-design-links)
 
 ## Prerequisites
 
-  1. Install [nodejs](https://nodejs.org/en/download/) and [yarn](https://classic.yarnpkg.com/lang/en/docs/install/#windows-stable).
-
-  2. If you will work with the deployment scripts, you will need to have [AWS CLI Installed](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html),  [terraform CLI installed](https://www.terraform.io/downloads.html) and an AWS CLI profile configured and active in the shell environment.
-
-## Project Structure
-
-There are two major folder branches at the root of this repository.
-
-- **[source](./source/README.md)** - A single React app containing the code for the Revenue Cycle Management Console UI.
-- **[deployment](./deployment/README.md)** - A single Terraform project used by all CI/CD processes.
+To get this project up and running locally, you must have [node](https://nodejs.org/en/) and [yarn](https://yarnpkg.com/) installed locally.
 
 ## Getting Started
-  1. From the root folder please run the following commands:
-      ```bash
-        > yarn add --dev husky
-        > npx husky install
 
-        # IMPORTANT! Only if the .husky/pre-commit is not defined already or it does not contain `cd source && yarn lint-staged`
-        > npx husky add .husky/pre-commit "cd source && yarn lint-staged"
-      ```
-  - This will add a pre-commit hook (`cd source && yarn lint-staged`) that will run every time you make a commit, `lint-staged` is defined in **[source/package.json](./source/package.json)** and it will run the linter and prettier check and format the code: 
-    
-      ```javascript
-        "lint-staged": {
-          "src/*.{ts,tsx}": [
-            "yarn prettier:fix",
-            "yarn lint"
-          ]
-        }
-      ```
-  > :pushpin: You can add other pre-commit hooks as per your needs, ex: 
-        `> npx husky add .husky/pre-commit "cd deployment && terraform validate"`
+<!-- #### Environment variables
 
-<br />     
+<i>
+  <b>
+  All AWS secrets and keys are already set on github, the local `.env` variables are also added to the Github secrets, please refer to `.env.example` if you need to setup the project variables locally.
+  </b>
+</i>
+<br />
+<br /> -->
 
-  2. Follow the instructions found in the README files in the **[source](./source/README.md)** and **[deployment](./deployment/README.md)** folders
+**To get this project set up on your local machine, follow these simple steps:**
+1. Make sure you are in the `source` folder and run:
+```
+  > yarn install
+```
+2. Run `yarn start` to start the project, it should automatically redirect or you can now navigate to `http://localhost:3000` to view the app. The server refreshes every time you make a change to a file.<br>
+3. Most important, enjoy the app!<br>
 
-## Live links
+## Built With
 
-- Dev URL: [TO_FILL:DevUrl]
-- Prod URL: [TO_FILL:ProdUrl]
-- Backend URL: [TO_FILL:BackendUrl]
+- Typescript
+- React.js create-react-app
+- [Redux Toolkit](https://redux-toolkit.js.org/)
+- Styled components
+- And other goodies (check package.json)
+
+## Live links:
+
+- production: https://release-candidate.console.outlift.ai/
+- development: https://console.virtualoutbound.com/
+
+<!-- ## Screenshot of the app.
+
+![image](.github/images/capture.png) -->
+
+## Tests
+#### Tested with
+
+- Cypress (E2E and unit tests)
+<!-- - Jest (Unit tests)
+- Selenium/Selenium Grid (Call load testing) -->
+
+#### All Tests (e2e and unit tests)
+
+1. Open the terminal and navigate to the `source` folder
+
+2. Install dependencies (only if you did not install them previously): `yarn install`
+   
+3. Run `yarn start` to start your project locally
+
+4. Run the tests with the command: `yarn run test`.
+
+#### Unit Tests
+
+1. Open the terminal and navigate to the `source` folder
+2. Install dependencies (only if you did not install them previously): `yarn install`
+3. Run the tests with the command: `yarn test:unit`
+
+#### E2E Tests
+
+1. Open the terminal and navigate to the `source` folder
+
+2. Install dependencies (only if you did not install them previously): `yarn install`
+   
+3. Run `yarn start` to start your project locally
+
+4. Run the tests on `http:localhost:3000` with the command: `yarn run cy:e2e` or on a prefered URL with the command: `yarn run test:e2e --config baseUrl=[URL to test]"
+
+## Files and Folder Structure Conventions
+
+    .
+    ├── archived                 # Components and functionality that is not used anymore but might be needed again in the future
+    ├── cypress                  # Basic Cypress installation components
+    │    └── e2e                 # E2E tests
+    ├── public                   # Basic React public folder (you can add the favicon, manifest.json or other inline scripts)
+    ├── build                    # Files generated by the `yarn build` command
+    ├── src                      # Source files
+    |   ├── app                  # Includes the Redux Toolkit store and hooks
+    |   ├── assets               # Images, icons and downloadable files
+    |   ├── components           # React TSX components
+    |   ├── features             # App features, ex: calls or users
+    |   ├── hooks                # Generic hooks that need to be shared between components and features
+    |   ├── pages                # Pages used by the router
+    |   ├── services             # 3rd party services
+    |   ├── types                # Generic types that need to be shared between components and features
+    |   ├── utils                # Generic helper functionality that need to be shared between components and features, ex: `date.ts` (dates formatting) or `dom.ts` (dom manipulation)
+    |   ├── App.tsx              # Basic React App component, we add our pages Router Component and custom High Order Components here, ex: Theme or GlobalStyles 
+    |   └── index.tsx            # Basic React index.tsx file, we add wrapper provided by packages, ex: Router (react-router-dom) or Provider (react-redux)
+    ├── .prettierrc.js           # Settings for prettier formatting
+    ├── build-development.sh     # Build command used for the development environment deploys to grab any required AWS secrets before running the build
+    ├── build-production.sh      # Build command used for the production environment deploys to grab any required AWS secrets before running the build
+    ├── cypress.json             # Cypress settings
+    └── tsconfig.json            # Typescript settings
 
 ## Useful links
-- Components Inventory: https://outboundai.atlassian.net/wiki/spaces/OM/pages/810647553/Component+Inventory
+#### IVR Simulator phone numbers:
+- https://github.com/outbound-ai/Outbound.Dev.AwsConnect/blob/main/PHONENUMBERS.md
+
+#### Confluence:
+
+- [outboundai.atlassian.net](https://outboundai.atlassian.net/wiki/spaces/OM/overview)
+
+#### Project design links:
