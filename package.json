@@ -1,0 +1,6 @@
+{
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "husky": "^7.0.4"
+  }
+}
