@@ -1,26 +1,35 @@
-import { Button, ButtonGroup } from 'react-bootstrap'
+import { ButtonGroup, Button as BButton } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+import styled from 'styled-components'
+// styles and assets
+import { ReactComponent as Logo } from 'assets/images/logo.svg'
+import { ReactComponent as FacebookLogo } from 'assets/images/FacebookLogo.svg'
+import { ReactComponent as LinkedinLogo } from 'assets/images/LinkedinLogo.svg'
+import { ReactComponent as GoogleLogo } from 'assets/images/GoogleLogo.svg'
+import LoginShowcaseImageSrc from 'assets/images/image30.png'
+// components
+import { Button } from 'components'
 
-export const Login = ({ csrfToken }) => {
+export const Login = () => {
   return (
-    <div id="login-page">
+    <StyledDiv>
       <div id="login-page_form">
-        <div className="logo" />
+        <Logo />
         <div id="description">
           <p>A high volume recruitment platform based on BLOCKCHAIN</p>
           <p className="helper-text">Welcome back! Please login to your account.</p>
         </div>
-        <form method="post" action="/api/auth/callback/credentials" id="login-form" className="shadow-none">
+        <form id="login-form" className="shadow-none">
           <ButtonGroup id="login-options">
-            <Button variant="secondary" className="shadow-none">
+            <BButton variant="secondary" className="shadow-none">
               Candidate
-            </Button>
-            <Button variant="secondary" className="shadow-none selected">
+            </BButton>
+            <BButton variant="secondary" className="shadow-none selected">
               Company
-            </Button>
-            <Button variant="secondary" className="shadow-none">
+            </BButton>
+            <BButton variant="secondary" className="shadow-none">
               Validator
-            </Button>
+            </BButton>
           </ButtonGroup>
 
           <div className="login-input">
@@ -57,16 +66,16 @@ export const Login = ({ csrfToken }) => {
                 Remember me
               </label>
             </span>
-            <Link href="/#" className="helper-text">
-              <a>Forgot password?</a>
+            <Link to="/#" className="helper-text">
+              Forgot password?
             </Link>
           </div>
 
           <div className="login-buttons">
-            <Button type="submit" id="login-btn" variant="primary" className="shadow-none">
+            <Button type="submit" id="login-btn" className="shadow-none">
               Login
             </Button>
-            <Button id="signup" variant="primary" className="shadow-none">
+            <Button id="signup" className="shadow-none" variant="outlined">
               Sign Up
             </Button>
           </div>
@@ -74,12 +83,202 @@ export const Login = ({ csrfToken }) => {
 
         <div className="alternative-login">
           <p className="helper-text">Or login with</p>
-          <Button className="btn-google" />
-          <Button className="btn-linkedin" />
-          <Button className="btn-facebook" />
+          <Button>
+            <FacebookLogo />
+          </Button>
+          <Button>
+            <LinkedinLogo />
+          </Button>
+          <Button>
+            <GoogleLogo />
+          </Button>
         </div>
       </div>
-      <div className="login_image" />
-    </div>
+
+      <div className="showcase-image" />
+    </StyledDiv>
   )
 }
+
+export const StyledDiv = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-rows: 100vh;
+  height: 100vh;
+  width: 100%;
+  height: auto;
+  font-family: Poppins, 'Droid Sans', 'Helvetica Neue', sans-serif;
+  background-color: white;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: 1fr;
+    .showcase-image {
+      display: none;
+    }
+  }
+
+  #login-page_form {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+    padding-inline: max(18%, 2em);
+    padding-block: min(18%, 3em);
+    gap: 3em;
+
+    #description {
+      :first-child {
+        color: #4401d4;
+        font-weight: bold;
+        font-size: 36px;
+      }
+
+      :nth-child(2) {
+        font-size: 18px;
+      }
+    }
+
+    #login-options {
+      margin-bottom: 20px;
+      background-color: rgba(118, 118, 128, 0.12);
+      color: #0f0e0e;
+      border-radius: 8px;
+      height: 32px;
+
+      .btn-secondary {
+        margin-top: 2px;
+        height: 28px;
+        line-height: 17px;
+        color: black;
+        border: none;
+        border-radius: 6px;
+        background-color: transparent;
+
+        &.selected {
+          background-color: white;
+        }
+      }
+
+      input {
+        &:focus-visible,
+        &:focus {
+          border-left: 3px solid #0c31f1;
+        }
+      }
+    }
+
+    .login-input {
+      input {
+        height: 74px;
+        border-radius: 0;
+        border: 1px solid #c1bbbb;
+        font-size: 18px;
+
+        &:focus {
+          border-left: 4px solid #0c31f1;
+          filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+        }
+      }
+
+      span {
+        position: relative;
+        display: block;
+
+        label {
+          position: absolute;
+          z-index: 1;
+          margin-left: 27px;
+          margin-top: 12px;
+        }
+
+        input {
+          padding-top: 39px;
+          padding-left: 27px;
+        }
+      }
+    }
+
+    .login-help {
+      display: flex;
+      justify-content: space-between;
+      height: 24px;
+      margin-top: 19px;
+
+      label {
+        margin-left: 8px;
+        cursor: pointer;
+      }
+
+      a {
+        text-decoration: none;
+
+        &:hover {
+          color: #999;
+        }
+      }
+    }
+
+    .login-buttons {
+      margin-top: 60px;
+      display: flex;
+      align-items: center;
+      gap: 1em;
+
+      #login-btn {
+        margin-right: 33px;
+      }
+
+      #signup {
+        background-color: white;
+        border-color: #4401d4;
+        color: #4401d4;
+      }
+    }
+
+    .alternative-login {
+      display: flex;
+      margin-top: 2em;
+
+      button {
+        width: 30px;
+        height: 30px;
+        border: none;
+        padding: 0;
+        background-color: transparent;
+
+        &:not(:last-child) {
+          margin-right: 33px;
+        }
+      }
+
+      p {
+        margin-right: 60px;
+      }
+
+      .btn-facebook {
+        background: url(FacebookLogo) no-repeat;
+      }
+
+      .btn-linkedin {
+        background: url(LinkedinLogo) no-repeat;
+      }
+
+      .btn-google {
+        background: url(GoogleLogo) no-repeat;
+      }
+    }
+  }
+
+  .showcase-image {
+    max-width: 100%;
+    background: url(${LoginShowcaseImageSrc}) no-repeat center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+
+  .text-color {
+    color: #4401d4;
+  }
+`
