@@ -2,34 +2,39 @@ import { Routes, Route, Navigate, Outlet } from 'react-router-dom'
 import { isEmpty } from 'lodash'
 // state
 import { useAppDispatch, useAppSelector } from 'app/hooks'
-import { SuccessLogin } from 'pages'
 // utils
 import { getUserFromStorage } from 'utils'
 // features
 import { setAuthSession } from 'features/auth'
 // pages
-import { Login } from 'pages'
+import { Login, Dashboard, Candidates, Jobs, Messages, Assessments, Profiles, Statistics } from 'pages'
 
 export const Router = () => {
   // global state
   const { user } = useAppSelector((state) => state.authReducer)
-  console.log(`user`, user)
+
   // props and utils
   const dispatch = useAppDispatch()
-  const loggedIn = sessionStorage.getItem('accessToken') /* && sessionStorage.getItem('profile') */
-  if (loggedIn && isEmpty(user)) {
-    const { currentUser } = getUserFromStorage()
-    dispatch(setAuthSession({ currentUser }))
+  const loggedInUser = getUserFromStorage()
+  console.log(loggedInUser)
+  if (loggedInUser && isEmpty(user)) {
+    dispatch(setAuthSession(loggedInUser))
   }
 
   return (
     <Routes>
       {/* Sign in page */}
-      <Route path="login" element={loggedIn ? <Navigate replace to="/" /> : <Login />} />
+      <Route path="/login" element={loggedInUser ? <Navigate replace to="/" /> : <Login />} />
 
       {/* Signed in routes */}
-      <Route element={(() => (loggedIn ? <Outlet /> : <Navigate replace to="login" />))()}>
-        <Route path="/" element={<SuccessLogin />} />
+      <Route element={(() => (loggedInUser ? <Outlet /> : <Navigate replace to="login" />))()}>
+        <Route path="/Candidates" element={<Candidates />} />
+        <Route path="/Jobs" element={<Jobs />} />
+        <Route path="/Assessments" element={<Assessments />} />
+        <Route path="/Profiles" element={<Profiles />} />
+        <Route path="/Statistics" element={<Statistics />} />
+        <Route path="/Messages" element={<Messages />} />
+        <Route path="/" element={<Dashboard />} />
       </Route>
       <Route path="*" element={<Navigate replace to="/" />} />
     </Routes>

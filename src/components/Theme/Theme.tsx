@@ -4,7 +4,8 @@ const theme = {
   colors: {
     primary: '#4401D4',
     white: '#E5E5E5',
-    primaryBlack: '#112D3D',
+    dark: '#112D3D',
+    bgWhite: '#F2F2F2',
 
     stateError: '#E94141',
     stateWarning: '#E9A641',

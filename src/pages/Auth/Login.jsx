@@ -1,5 +1,7 @@
+import { useState } from 'react'
+import { useDispatch } from 'react-redux'
 import { ButtonGroup, Button as BButton } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 // styles and assets
 import { ReactComponent as Logo } from 'assets/images/logo.svg'
@@ -9,8 +11,33 @@ import { ReactComponent as GoogleLogo } from 'assets/images/GoogleLogo.svg'
 import LoginShowcaseImageSrc from 'assets/images/image30.png'
 // components
 import { Button } from 'components'
+// utils
+import { handleRequestStates } from 'utils'
+// features
+import { signIn, setAuthSession } from 'features/auth'
 
 export const Login = () => {
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const [data, setData] = useState({ email: 'demo@demo.com', password: 'demo@demo.com' })
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState(false)
+
+  const handleLogin = async (e) => {
+    e.preventDefault()
+    // signIn(data)
+    const user = await handleRequestStates(() => signIn(data), setIsLoading, setError)
+    if (user) {
+      dispatch(setAuthSession(user))
+      navigate('/')
+    }
+  }
+
+  const handleChange = (e) => {
+    const { name, value } = e.target
+    setData((state) => ({ ...state, [name]: value }))
+  }
+
   return (
     <StyledDiv>
       <div id="login-page_form">
@@ -39,10 +66,11 @@ export const Login = () => {
               </label>
               <input
                 type="email"
-                name="username"
+                name="email"
                 className="form-control shadow-none"
                 id="login"
-                placeholder="ion.creanga@humulesti.ro"
+                value={data.email}
+                onChange={handleChange}
               />
             </span>
             <span>
@@ -54,7 +82,8 @@ export const Login = () => {
                 name="password"
                 className="form-control shadow-none"
                 id="password"
-                placeholder="*****"
+                value={data.password}
+                onChange={handleChange}
               />
             </span>
           </div>
@@ -72,7 +101,7 @@ export const Login = () => {
           </div>
 
           <div className="login-buttons">
-            <Button type="submit" id="login-btn" className="shadow-none">
+            <Button type="button" color="primary" id="login-btn" className="shadow-none" onClick={handleLogin}>
               Login
             </Button>
             <Button id="signup" className="shadow-none" variant="outlined">
@@ -100,7 +129,7 @@ export const Login = () => {
   )
 }
 
-export const StyledDiv = styled.div`
+const StyledDiv = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-auto-rows: 100vh;

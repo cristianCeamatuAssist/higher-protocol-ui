@@ -20,12 +20,12 @@ export const Button = ({ children, type, variant, size, color, invertOnHover, da
 const StyledButton = styled.button`
   border-radius: 40px;
   padding: 0.5rem 1rem;
-  color: ${({ theme }) => theme.colors.white};
-  background: ${({ theme, color }) => (color ? theme.colors[color] : theme.colors.primary)};
-  border: 1px solid ${({ color, theme }) => (color ? theme.colors[color] : theme.colors.primary)};
+  color: ${({ color, theme }) => (color ? theme.colors.white : theme.colors.dark)};
+  background: ${({ theme, color }) => (color ? theme.colors[color] : 'transparent')};
+  border: 1px solid ${({ color, theme }) => (color ? theme.colors[color] : 'transparent')};
   border-radius: ${({ theme }) => theme.borderRadius};
   font-size: ${({ theme }) => theme.typography.h3};
-  box-shadow: ${({ theme }) => theme.shadows.normal};
+  box-shadow: ${({ color, theme }) => (color ? theme.shadows.normal : 'none')};
 
   ${({ size, theme }) =>
     size === 'large' &&
@@ -70,6 +70,14 @@ const StyledButton = styled.button`
           color: ${theme.colors.white};
           background: ${color ? theme.colors[color] : theme.colors.primary};
         `};
+      `}
+  }
+
+  &:active {
+    ${({ color }) =>
+      color &&
+      css`
+        box-shadow: none;
       `}
   }
 
