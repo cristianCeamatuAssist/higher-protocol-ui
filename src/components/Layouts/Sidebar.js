@@ -15,25 +15,33 @@ import { capitalize } from 'utils'
 export const Sidebar = ({ items }) => {
   return (
     <StyledDiv>
-      <div className="logo">
-        <Logo />
-      </div>
+      <div class="content">
+        <div className="logo">
+          <Logo />
+        </div>
 
-      {items.map((item) => {
-        return (
-          <NavLink to={`/${item}`} key={item} className="menu-item" activeClassName="active">
-            <div className={`menu-item_logo ${item}-logo`} />
-            <span>{capitalize(item)}</span>
-          </NavLink>
-        )
-      })}
+        {items.map((item) => {
+          return (
+            <NavLink to={`/${item}`} key={item} className="menu-item" activeClassName="active">
+              <div className={`menu-item_logo ${item}-logo`} />
+              <span>{capitalize(item)}</span>
+            </NavLink>
+          )
+        })}
+      </div>
     </StyledDiv>
   )
 }
 
 const StyledDiv = styled.div`
-    /* height: 100%; */
     background-color: ${({ theme }) => theme.colors.primary};
+
+    .content {
+      position: fixed;
+      inset-block: 0;
+      left: 0;
+      width: 23.43rem;
+    }
 
     .logo {
       text-align: center;
