@@ -1,11 +1,15 @@
 import styled from 'styled-components'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { Button } from 'react-bootstrap'
 // styles and assets
 import LogoSmall from 'assets/images/logo-small.png'
+import SearchLogo from 'assets/images/search-bar-logo.png'
+import MenuIcon from 'assets/images/ic_menu.png'
+// components
+import { NavButton } from 'components'
 // utils
-import { TOKEN_LINK } from 'utils';
+import { TOKEN_LINK } from 'utils'
 // features
 import { signOut } from 'features/auth'
 
@@ -14,17 +18,22 @@ export const Navbar = () => {
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const location = useLocation()
 
   const handleSignOut = () => {
     dispatch(signOut())
     navigate('/login')
   }
+
+  // variables
+  const breadCrump = location.pathname.slice(1)
+
   return (
     <StyledDiv>
       <div className="left-side">
         <div className="menu-icon" />
-        {/* <p className="page-title">{capitalize(appStore.selectedMenu)}</p>
-        {appStore.selectedMenu === MENU_ITEMS.JOBS && <ButtonPrime path="/jobs/create">Add new</ButtonPrime>} */}
+        <p className="page-title text-capitalize">{breadCrump}</p>
+        {breadCrump === 'jobs' && <NavButton path="/jobs/create">Add new</NavButton>}
       </div>
 
       <div className="right-side">
@@ -66,7 +75,7 @@ const StyledDiv = styled.div`
     align-items: center;
 
     .menu-icon {
-      background: url(../images/ic_menu.png) no-repeat;
+      background: url(${MenuIcon}) no-repeat;
       width: 40px;
       height: 18px;
       position: absolute;
@@ -107,7 +116,7 @@ const StyledDiv = styled.div`
     .search-logo {
       width: 28px;
       height: 28px;
-      background: url(../images/search-bar-logo.png);
+      background: url(${SearchLogo});
       background-position: center;
       position: relative;
       transform: translate(-200%, 50%);
@@ -116,6 +125,7 @@ const StyledDiv = styled.div`
 
     .notifications {
       position: relative;
+      bottom: -0.5rem;
       margin-left: 60px;
 
       background-color: #00eab2;

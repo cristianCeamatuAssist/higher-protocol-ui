@@ -1,4 +1,9 @@
 import styled from 'styled-components'
+// styles and assets
+import Icon from 'assets/images/icon.png'
+import Icon2 from 'assets/images/icon2.png'
+import Icon3 from 'assets/images/icon3.png'
+import Icon4 from 'assets/images/icon4.png'
 
 export const Card = ({ card }) => {
   return (
@@ -14,45 +19,42 @@ export const Card = ({ card }) => {
 
 const StyledDiv = styled.div`
   background-color: #48a9f8;
-  width: 351px;
-  height: 169px;
+  min-width: min(250px, 40%);
+  max-width: min(351px, 40%);
+  flex-grow: 1;
+  height: min(169px, 20vh);
   border-radius: 20px;
   display: inline-flex;
   padding: 30px 30px 16px;
   justify-content: space-between;
-  margin-top: 10px;
   position: relative;
-
-  &:not(:last-child) {
-    margin-right: 30px;
-  }
 
   .logo {
     height: 69px;
     width: 72px;
 
     &.applications-logo {
-      background: url(../../images/icon.png);
+      background: url(${Icon});
     }
 
     &.schedule-logo {
-      background: url(../../images/icon2.png);
+      background: url(${Icon2});
     }
 
     &.profiles-logo {
-      background: url(../../images/icon3.png);
+      background: url(${Icon3});
     }
 
     &.messages-logo {
-      background: url(../../images/icon4.png);
+      background: url(${Icon4});
     }
 
     &.approved_requests-logo {
-      background: url(../../images/icon.png);
+      background: url(${Icon});
     }
 
     &.rejected_requests-logo {
-      background: url(../../images/icon.png);
+      background: url(${Icon});
     }
   }
 
@@ -60,6 +62,7 @@ const StyledDiv = styled.div`
     text-align: right;
     display: block;
     width: 130px;
+    max-width: 50%;
 
     .title {
       margin-bottom: 0;

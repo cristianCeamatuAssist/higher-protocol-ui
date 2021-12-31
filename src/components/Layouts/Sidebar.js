@@ -15,18 +15,13 @@ import { capitalize } from 'utils'
 export const Sidebar = ({ items }) => {
   return (
     <StyledDiv>
-      <div class="logo">
+      <div className="logo">
         <Logo />
       </div>
 
       {items.map((item) => {
         return (
-          <NavLink
-            to={`/${item === 'dashboard' ? '' : item}`}
-            key={item}
-            className="menu-item"
-            activeClassName="active"
-          >
+          <NavLink to={`/${item}`} key={item} className="menu-item" activeClassName="active">
             <div className={`menu-item_logo ${item}-logo`} />
             <span>{capitalize(item)}</span>
           </NavLink>

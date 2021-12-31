@@ -1,6 +1,10 @@
 import styled from 'styled-components'
+// styles and assets
+import FakeGraphImage from 'assets/images/fakes/fakeGraph.svg'
 // components
 import { Card, CompanyLayout } from 'components'
+// features
+import { EmployerAgenda } from 'features/employer'
 
 export const Dashboard = () => {
   const cards = [
@@ -38,6 +42,12 @@ export const Dashboard = () => {
             <Card card={cardProps} key={index} />
           ))}
         </div>
+
+        <div className="graph">
+          <img className="img-fluid" src={FakeGraphImage} layout="responsive" alt="Graph" />
+        </div>
+
+        <EmployerAgenda />
       </StyledDiv>
     </CompanyLayout>
   )
@@ -45,18 +55,18 @@ export const Dashboard = () => {
 
 const StyledDiv = styled.div`
   .cards {
-    height: 169px;
     margin-bottom: 31px;
     display: flex;
-    justify-content: space-between;
+    justify-content: stretch;
+    flex-wrap: wrap;
+    gap: 1.5em;
   }
 
   .graph {
     background-color: white;
-    height: 485px;
     border-radius: 20px;
     margin-bottom: 24px;
-    overflow: hidden;
+
     img {
       object-fit: fill;
     }

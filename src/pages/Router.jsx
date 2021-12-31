@@ -28,15 +28,15 @@ export const Router = () => {
 
       {/* Signed in routes */}
       <Route element={(() => (loggedInUser ? <Outlet /> : <Navigate replace to="login" />))()}>
-        <Route path="/Candidates" element={<Candidates />} />
-        <Route path="/Jobs" element={<Jobs />} />
-        <Route path="/Assessments" element={<Assessments />} />
-        <Route path="/Profiles" element={<Profiles />} />
-        <Route path="/Statistics" element={<Statistics />} />
-        <Route path="/Messages" element={<Messages />} />
-        <Route path="/" element={<Dashboard />} />
+        <Route path="/candidates" element={<Candidates />} />
+        <Route path="/jobs" element={<Jobs />} />
+        <Route path="/assessments" element={<Assessments />} />
+        <Route path="/profiles" element={<Profiles />} />
+        <Route path="/statistics" element={<Statistics />} />
+        <Route path="/messages" element={<Messages />} />
+        <Route path="/dashboard" element={<Dashboard />} />
       </Route>
-      <Route path="*" element={<Navigate replace to="/" />} />
+      <Route path="*" element={<Navigate replace to="/dashboard" />} />
     </Routes>
   )
 }

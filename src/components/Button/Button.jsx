@@ -26,11 +26,12 @@ const StyledButton = styled.button`
   border-radius: ${({ theme }) => theme.borderRadius};
   font-size: ${({ theme }) => theme.typography.h3};
   box-shadow: ${({ color, theme }) => (color ? theme.shadows.normal : 'none')};
+  font-weight: bold;
 
   ${({ size, theme }) =>
     size === 'large' &&
     css`
-      padding: 0.875rem 4rem;
+      padding: 0.725rem 3rem;
       font-size: ${theme.typography.h2};
     `}
 
@@ -58,6 +59,7 @@ const StyledButton = styled.button`
     `};
 
   &:hover {
+    box-shadow: none;
     ${({ invertOnHover, color, theme, variant }) =>
       invertOnHover &&
       css`
@@ -70,14 +72,6 @@ const StyledButton = styled.button`
           color: ${theme.colors.white};
           background: ${color ? theme.colors[color] : theme.colors.primary};
         `};
-      `}
-  }
-
-  &:active {
-    ${({ color }) =>
-      color &&
-      css`
-        box-shadow: none;
       `}
   }
 
