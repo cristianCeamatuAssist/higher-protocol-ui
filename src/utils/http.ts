@@ -11,3 +11,8 @@ axios.interceptors.request.use((config) => {
   return config
 })
 export const http = axios
+
+export const getResource = async (url: string) => {
+  const { data } = await http.get(url)
+  return data
+}

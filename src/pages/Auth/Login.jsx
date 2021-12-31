@@ -111,7 +111,7 @@ export const Login = () => {
         </form>
 
         <div className="alternative-login">
-          <p className="helper-text">Or login with</p>
+          <p>Or login with</p>
           <Button>
             <FacebookLogo />
           </Button>
@@ -138,6 +138,7 @@ const StyledDiv = styled.div`
   height: auto;
   font-family: Poppins, 'Droid Sans', 'Helvetica Neue', sans-serif;
   background-color: white;
+  overflow: hidden;
 
   @media (max-width: 1024px) {
     grid-template-columns: 1fr;
@@ -152,8 +153,8 @@ const StyledDiv = styled.div`
     align-items: stretch;
     justify-content: center;
     padding-inline: max(18%, 2em);
-    padding-block: min(18%, 3em);
-    gap: 3em;
+    padding-block: min(18%, 2em);
+    gap: 2em;
 
     #description {
       :first-child {
@@ -168,7 +169,7 @@ const StyledDiv = styled.div`
     }
 
     #login-options {
-      margin-bottom: 20px;
+      margin-bottom: 1em;
       background-color: rgba(118, 118, 128, 0.12);
       color: #0f0e0e;
       border-radius: 8px;
@@ -266,7 +267,8 @@ const StyledDiv = styled.div`
 
     .alternative-login {
       display: flex;
-      margin-top: 2em;
+      align-items: center;
+      margin-top: 1em;
 
       button {
         width: 30px;
@@ -281,7 +283,8 @@ const StyledDiv = styled.div`
       }
 
       p {
-        margin-right: 60px;
+        margin-right: 30px;
+        margin-bottom: 0;
       }
 
       .btn-facebook {

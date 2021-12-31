@@ -1,19 +1,18 @@
 import { http } from 'utils'
 
 export const signIn = async (body) => {
-  // const res = await http.post('https://hr-app-eth.herokuapp.com/login', body)
+  const res = await http.post('https://hr-app-eth.herokuapp.com/login', { user: body })
   // console.log(`res`, res)
-  // const token = res.headers.get('authorization')
-  // console.log(`token`, token)
-  // return { user: res?.data, token }
-  const { email, password } = body
-  if (email === 'demo@demo.com' && password === 'demo@demo.com') {
-    return {
-      username: 'johnDoe',
-      email: 'demo@demo.com',
-      first_name: 'John',
-      last_name: 'Doe',
-      type: 'company',
-    }
+  // try {
+  //   const token = res.headers?.get('authorization')
+  //   console.log(`token`, token)
+  // } catch (error) {
+  //   console.log('error :>> ', error)
+  // }
+
+  return {
+    user: res?.data,
+    token:
+      'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1Iiwic2NwIjoidXNlciIsImF1ZCI6bnVsbCwiaWF0IjoxNjQwOTY3ODkwLCJleHAiOjE2NDA5NzE0OTAsImp0aSI6IjNhMWRiZjYxLTQ4MDItNGViZC1hNTJhLTc3ZDk3MDc3ZDZkZiJ9.Alwb8H4b83OksD_lHlDZdaz1UKkymEpL9iGdPOOywK4',
   }
 }

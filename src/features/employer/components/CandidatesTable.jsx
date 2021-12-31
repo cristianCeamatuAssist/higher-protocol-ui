@@ -1,33 +1,54 @@
+import useSWR from 'swr'
 import styled from 'styled-components'
 import { Button as BButton } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 // styles and assets
 import { ReactComponent as CaretDown } from 'assets/icons/CaretDown.svg'
+import RowTogglerIconSrc from 'assets/images/options.png'
 // components
 import { Button } from 'components'
+// utils
+import { getResource } from 'utils'
 // features
 import { demoCandidates } from 'features/employer'
 
 export const CandidatesTable = ({ variant }) => {
-  console.log('variant :>> ', variant)
-  const bulina = [
-    {
-      status: 'video',
-      title: 'Applications Received',
+  const { data, error } = useSWR('https://hr-app-eth.herokuapp.com/candidates', getResource)
+  const candidates = data?.map((candidate) => ({
+    ...candidate,
+    ...JSON.parse(candidate.personal_details),
+  }))
+  console.log('candidates :>> ', candidates)
+
+  const statusMapping = {
+    video: {
+      label: 'Applications Received',
     },
-    {
-      status: 'screening',
-      title: 'Screening',
+    screening: {
+      label: 'Screening',
     },
-    {
-      status: 'interview',
-      title: 'Final Interview',
+    interview: {
+      label: 'Final Interview',
     },
-    {
-      status: 'interview',
-      title: 'Final Interview',
-    },
+  }
+
+  const getMatchingScoreColor = (score) => {
+    if (score >= 80) return 'green'
+    if (score > 60) return 'light-orange'
+    if (score > 50) return 'orange'
+    return 'red'
+  }
+
+  const getRandomNumber = (until) => Math.floor(Math.random() * until) + 1
+
+  // demo data
+  const avatarsArray = [
+    'https://i.pravatar.cc/150?u=1',
+    'https://i.pravatar.cc/150?u=2',
+    'https://i.pravatar.cc/150?u=3',
+    'https://i.pravatar.cc/150?u=4',
   ]
+  const statusArray = Object.keys(statusMapping)
 
   return (
     <StyledDiv>
@@ -56,31 +77,37 @@ export const CandidatesTable = ({ variant }) => {
         </thead>
 
         <tbody>
-          {demoCandidates.map((candidate, index) => (
-            <tr key={candidate.id}>
-              <td className="full-name">
-                <Link to={`/candidates/${candidate.id}`}>
-                  <a>
-                    <div className="user-picture">
-                      <img src={candidate.image} alt="Candidate" />
-                    </div>
-                    <span>{candidate.fullName}</span>
-                  </a>
-                </Link>
-              </td>
-              <td>{candidate.position}</td>
-              <td className={`matching-score ${candidate.matchingScoreColor}`}>{candidate.match_score}</td>
-              <td className="status">
-                <div className={`status-logo ${bulina[index].status}`} />
-                <p>{bulina[index].title}</p>
-              </td>
-              <td className="options">
-                <BButton variant="secondary">
-                  <div />
-                </BButton>
-              </td>
-            </tr>
-          ))}
+          {candidates?.map((candidate, index) => {
+            const randomStatus = statusArray[getRandomNumber(2)]
+            const randomAvatar = avatarsArray[getRandomNumber(3)]
+            return (
+              <tr key={candidate.id}>
+                <td className="full-name">
+                  <Link to={`/candidates/${candidate.id}`}>
+                    <>
+                      <div className="user-picture">
+                        <img src={randomAvatar} alt="Candidate" />
+                      </div>
+                      <span>{`${candidate.first_name} ${candidate.last_name}`}</span>
+                    </>
+                  </Link>
+                </td>
+                <td>{candidate.position}</td>
+                <td className={`matching-score ${getMatchingScoreColor(candidate.match_score)}`}>
+                  {candidate.match_score}
+                </td>
+                <td className="status">
+                  <div className={`status-logo ${randomStatus}`} />
+                  <p>{statusMapping[randomStatus].label}</p>
+                </td>
+                <td className="options">
+                  <BButton variant="secondary">
+                    <img src={RowTogglerIconSrc} alt="Toggler Icon" />
+                  </BButton>
+                </td>
+              </tr>
+            )
+          })}
         </tbody>
       </StyledTable>
 

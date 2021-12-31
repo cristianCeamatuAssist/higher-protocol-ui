@@ -16,7 +16,7 @@ export const Router = () => {
   // props and utils
   const dispatch = useAppDispatch()
   const loggedInUser = getUserFromStorage()
-  console.log(loggedInUser)
+  
   if (loggedInUser && isEmpty(user)) {
     dispatch(setAuthSession(loggedInUser))
   }

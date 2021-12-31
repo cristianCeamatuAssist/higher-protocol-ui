@@ -19,10 +19,11 @@ export const Card = ({ card }) => {
 
 const StyledDiv = styled.div`
   background-color: #48a9f8;
-  min-width: min(250px, 40%);
-  max-width: min(351px, 40%);
+  /* min-width: min(351px, 40%); */
+  width: min(351px, 40%);
+  max-width: 351px;
   flex-grow: 1;
-  height: min(169px, 20vh);
+  min-height: 169px;
   border-radius: 20px;
   display: inline-flex;
   padding: 30px 30px 16px;
