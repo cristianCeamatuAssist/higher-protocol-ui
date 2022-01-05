@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 // import store from 'redux/store'
-import { removeUserFromStorage, setUserInStorage } from 'utils'
+import { removeSession, setSessionInStorage } from 'utils'
 
 // http.defaults.baseURL = process.env.REACT_APP_SERVERS_FACTORY_API_BASE_URL
 
@@ -14,12 +14,13 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     setAuthSession(state, action) {
-      state.user = action.payload
-      state.loggedIn = true
-      setUserInStorage(action.payload)
+      if (action.payload?.user) {
+        state.user = action.payload.user
+        state.loggedIn = true
+      }
     },
     signOut(state) {
-      removeUserFromStorage()
+      removeSession()
       state.user = null
       state.loggedIn = false
     },

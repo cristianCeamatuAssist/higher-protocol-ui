@@ -1,4 +1,4 @@
-export const handleRequestStates = async (fetcher, setIsLoading, setError) => {
+export const apiRequestWithStatesHandler = async (fetcher, setIsLoading, setError) => {
   setError(false)
   setIsLoading(true)
   try {

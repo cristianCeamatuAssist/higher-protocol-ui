@@ -12,7 +12,7 @@ import LoginShowcaseImageSrc from 'assets/images/image30.png'
 // components
 import { Button } from 'components'
 // utils
-import { handleRequestStates } from 'utils'
+import { apiRequestWithStatesHandler, setSessionInStorage } from 'utils'
 // features
 import { signIn, setAuthSession } from 'features/auth'
 
@@ -26,9 +26,10 @@ export const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault()
     // signIn(data)
-    const user = await handleRequestStates(() => signIn(data), setIsLoading, setError)
-    if (user) {
-      dispatch(setAuthSession(user))
+    const session = await apiRequestWithStatesHandler(() => signIn(data), setIsLoading, setError)
+    if (session) {
+      setSessionInStorage(session)
+      dispatch(setAuthSession(session))
       navigate('/')
     }
   }

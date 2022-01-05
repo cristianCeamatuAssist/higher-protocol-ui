@@ -1,9 +1,9 @@
+import { useEffect } from 'react'
 import { Routes, Route, Navigate, Outlet } from 'react-router-dom'
-import { isEmpty } from 'lodash'
 // state
 import { useAppDispatch, useAppSelector } from 'app/hooks'
 // utils
-import { getUserFromStorage } from 'utils'
+import { getAuthSession } from 'utils'
 // features
 import { setAuthSession } from 'features/auth'
 // pages
@@ -15,19 +15,18 @@ export const Router = () => {
 
   // props and utils
   const dispatch = useAppDispatch()
-  const loggedInUser = getUserFromStorage()
-  
-  if (loggedInUser && isEmpty(user)) {
-    dispatch(setAuthSession(loggedInUser))
-  }
+  useEffect(() => {
+    const authSession = getAuthSession()
+    dispatch(setAuthSession(authSession))
+  }, [dispatch])
 
   return (
     <Routes>
       {/* Sign in page */}
-      <Route path="/login" element={loggedInUser ? <Navigate replace to="/" /> : <Login />} />
+      <Route path="/login" element={user ? <Navigate replace to="/" /> : <Login />} />
 
       {/* Signed in routes */}
-      <Route element={(() => (loggedInUser ? <Outlet /> : <Navigate replace to="login" />))()}>
+      <Route element={(() => (user ? <Outlet /> : <Navigate replace to="login" />))()}>
         <Route path="/candidates" element={<Candidates />} />
         <Route path="/jobs" element={<Jobs />} />
         <Route path="/assessments" element={<Assessments />} />

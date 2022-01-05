@@ -35,6 +35,7 @@ export const Sidebar = ({ items }) => {
 
 const StyledDiv = styled.div`
     background-color: ${({ theme }) => theme.colors.primary};
+    z-index: ${({ theme }) => theme.zIndex.sidebar};
 
     .content {
       position: fixed;

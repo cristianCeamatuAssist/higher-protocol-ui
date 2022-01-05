@@ -1,7 +1,9 @@
-import { http } from 'utils'
+import axios from 'axios'
+
+axios.defaults.baseURL = process.env.REACT_APP_CONTENT_URL
 
 export const signIn = async (body) => {
-  const res = await http.post('https://hr-app-eth.herokuapp.com/login', { user: body })
+  const res = await axios.post('https://hr-app-eth.herokuapp.com/login', { user: body })
   // console.log(`res`, res)
   // try {
   //   const token = res.headers?.get('authorization')
@@ -13,6 +15,6 @@ export const signIn = async (body) => {
   return {
     user: res?.data,
     token:
-      'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1Iiwic2NwIjoidXNlciIsImF1ZCI6bnVsbCwiaWF0IjoxNjQwOTY3ODkwLCJleHAiOjE2NDA5NzE0OTAsImp0aSI6IjNhMWRiZjYxLTQ4MDItNGViZC1hNTJhLTc3ZDk3MDc3ZDZkZiJ9.Alwb8H4b83OksD_lHlDZdaz1UKkymEpL9iGdPOOywK4',
+      'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1Iiwic2NwIjoidXNlciIsImF1ZCI6bnVsbCwiaWF0IjoxNjQxMzkyOTE2LCJleHAiOjE2NDEzOTY1MTYsImp0aSI6ImEwOTk4YmFmLTNjOGItNDIyOS1hNzAwLWRiYTZmNzQ3NjhkMCJ9.eRCpTJKS9Trcd9e5xSjKbFkUAOqbw_zQTPi07oaPvlk',
   }
 }

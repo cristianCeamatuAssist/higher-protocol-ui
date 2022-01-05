@@ -8,6 +8,11 @@ export interface IUser {
   email_verified: boolean
 }
 
+export interface ISession {
+  token: string
+  user: IUser
+}
+
 export interface ILoginResponse {
   username: string
   given_name: string
