@@ -6,14 +6,12 @@ import { Link } from 'react-router-dom'
 import { ReactComponent as CaretDown } from 'assets/icons/CaretDown.svg'
 import RowTogglerIconSrc from 'assets/images/options.png'
 // components
-import { Button } from 'components'
+import { Button, Table, TableBodyCell } from 'components'
 // utils
 import { getResource } from 'utils'
-// features
-import { demoCandidates } from 'features/employer'
 
 export const CandidatesTable = ({ variant }) => {
-  const { data, error } = useSWR('https://hr-app-eth.herokuapp.com/candidates', getResource)
+  const { data, error } = useSWR('/candidates', getResource)
   const candidates = data?.map((candidate) => ({
     ...candidate,
     ...JSON.parse(candidate.personal_details),
@@ -49,33 +47,59 @@ export const CandidatesTable = ({ variant }) => {
     'https://i.pravatar.cc/150?u=4',
   ]
   const statusArray = Object.keys(statusMapping)
+  // variables
+  const columns = [
+    { prop: 'full_name', label: 'Full Name' },
+    { prop: 'position', label: 'Position' },
+    { prop: 'match_score', label: 'Matching Score' },
+    { prop: 'status', label: 'Status' },
+    { prop: 'action', label: '' },
+  ]
+
+  const rows = candidates?.map((candidate) => {
+    const randomStatus = statusArray[getRandomNumber(2)]
+    const randomAvatar = avatarsArray[getRandomNumber(3)]
+    return {
+      id: candidate.id,
+      full_name: (
+        <TableBodyCell
+          children={
+            <Link to={`/candidates/${candidate.id}`} className="d-flex align-items-center gap-2">
+              <div>
+                <img src={randomAvatar} className="rounded-circle" alt="Candidate" width="56" height="56" />
+              </div>
+              <span>{`${candidate.first_name} ${candidate.last_name}`}</span>
+            </Link>
+          }
+        />
+      ),
+      position: candidate.position,
+      match_score: candidate.match_score,
+      status: randomStatus,
+    }
+  })
 
   return (
     <StyledDiv>
-      <div className="table-header">
-        <h3>In Progress</h3>
+      <Table
+        columns={columns}
+        rows={rows}
+        tableHeaderComponent={
+          <div className="table-header">
+            <h3>In Progress</h3>
 
-        <div className="filters">
-          <div>
-            Status <CaretDown />
+            <div className="filters">
+              <div>
+                Status <CaretDown />
+              </div>
+              <div>
+                This Month <CaretDown />
+              </div>
+            </div>
           </div>
-          <div>
-            This Month <CaretDown />
-          </div>
-        </div>
-      </div>
-
+        }
+      />
       <StyledTable className="table table-light">
-        <thead>
-          <tr>
-            <th>Full Name</th>
-            <th>Position</th>
-            <th>Matching Score</th>
-            <th>Status</th>
-            <th />
-          </tr>
-        </thead>
-
         <tbody>
           {candidates?.map((candidate, index) => {
             const randomStatus = statusArray[getRandomNumber(2)]
@@ -134,6 +158,7 @@ const StyledDiv = styled.div`
     align-items: center;
     justify-content: space-between;
     padding: 2em;
+    width: 100%;
 
     .filters {
       display: flex;

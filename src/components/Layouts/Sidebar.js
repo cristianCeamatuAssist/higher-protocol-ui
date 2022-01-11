@@ -15,7 +15,7 @@ import { capitalize } from 'utils'
 export const Sidebar = ({ items }) => {
   return (
     <StyledDiv>
-      <div class="content">
+      <div className="content">
         <div className="logo">
           <Logo />
         </div>

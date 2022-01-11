@@ -17,3 +17,5 @@ export const removeSession = () => {
   localStorage.removeItem('token')
   localStorage.removeItem('user')
 }
+
+export const storage = { setSessionInStorage, removeSession, setAuthToken, setAuthUser }

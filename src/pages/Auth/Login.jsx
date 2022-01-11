@@ -14,21 +14,21 @@ import { Button } from 'components'
 // utils
 import { apiRequestWithStatesHandler, setSessionInStorage } from 'utils'
 // features
-import { signIn, setAuthSession } from 'features/auth'
+import { authApi, setAuthSession } from 'features/auth'
 
 export const Login = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const [data, setData] = useState({ email: 'demo@demo.com', password: 'demo@demo.com' })
+
+  const [data, setData] = useState({ email: 'demo@example.com', password: '1234' })
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState(false)
 
   const handleLogin = async (e) => {
     e.preventDefault()
     // signIn(data)
-    const session = await apiRequestWithStatesHandler(() => signIn(data), setIsLoading, setError)
+    const session = await apiRequestWithStatesHandler(() => authApi.signIn(data), setIsLoading, setError)
     if (session) {
-      setSessionInStorage(session)
       dispatch(setAuthSession(session))
       navigate('/')
     }

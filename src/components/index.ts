@@ -1,4 +1,5 @@
 export * from './Layouts'
+export * from './Table'
 export * from './Cards'
 export * from './Theme'
 export * from './Button'

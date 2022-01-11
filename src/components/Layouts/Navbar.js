@@ -100,17 +100,12 @@ const StyledDiv = styled.div`
     .search-bar {
       border-radius: 30px;
       height: 56px;
-      width: 509px;
+      max-width: 509px;
+      width: 100%;
       background-color: #e3e3e3;
-      padding: 0 30px;
+      padding: 0 4em 0 30px;
       margin-left: 40px;
       border: none;
-    }
-
-    @media (max-width: 1600px) {
-      .search-bar {
-        width: 200px;
-      }
     }
 
     .search-logo {
@@ -126,7 +121,8 @@ const StyledDiv = styled.div`
     .notifications {
       position: relative;
       bottom: -0.5rem;
-      margin-left: 60px;
+      margin-left: 1em;
+      min-width: 3em;
 
       background-color: #00eab2;
       border: 6px solid #99f4de;
@@ -183,6 +179,7 @@ const StyledDiv = styled.div`
 
       .details {
         margin-left: 30px;
+        min-width: 4.5em;
 
         p {
           margin: 0;
