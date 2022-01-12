@@ -1,3 +1,1 @@
-export * from './EmployerCalendar'
-export * from './EmployerAgenda'
-export * from './CandidatesTable'
+export * from './candidates'

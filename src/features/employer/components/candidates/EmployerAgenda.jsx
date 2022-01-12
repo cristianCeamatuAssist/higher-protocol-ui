@@ -5,7 +5,7 @@ import { CandidatesTable, EmployerCalendar } from 'features/employer'
 export const EmployerAgenda = () => {
   return (
     <StyledDiv>
-      <CandidatesTable variant={'light'} />
+      <CandidatesTable />
       <EmployerCalendar />
     </StyledDiv>
   )

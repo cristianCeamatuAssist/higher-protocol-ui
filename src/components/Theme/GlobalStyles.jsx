@@ -10,9 +10,24 @@ export default createGlobalStyle`
         font-style: normal;
     }
 
+    a {
+      color: inherit;
+      text-decoration: none;
+
+      &:hover {
+        color: inherit;
+      }
+    }
+
     h3, .h3 {
       font-weight: 500;
       font-size: 20px;
       line-height: 30px;
+    }
+
+    button {
+      background: none;
+      outline: none;
+      border: none;
     }
 `

@@ -1,10 +1,14 @@
 import styled from 'styled-components'
 
-export const TableBodyEllipsisCell = ({ text }) => {
+interface IProps {
+  text: string
+}
+
+export const TableBodyEllipsisCell = ({ text }: IProps) => {
   return <StyledTd>{text}</StyledTd>
 }
 
-export const StyledTd = styled.td`
+const StyledTd = styled.td`
   text-overflow: ellipsis;
   max-width: 15ch;
   overflow: hidden;
