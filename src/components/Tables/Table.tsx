@@ -120,7 +120,6 @@ const StyledDiv = styled.div`
       padding: 0.75rem;
       /* font-family: Poppins; */
       font-style: normal;
-      font-weight: 600;
       font-size: 16px;
       line-height: 24px;
 

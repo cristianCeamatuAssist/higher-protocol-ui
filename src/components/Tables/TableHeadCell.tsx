@@ -36,6 +36,7 @@ const StyledTh = styled.th`
     justify-content: space-between;
     align-items: center;
     gap: 2em;
+    font-size: 0.875rem;
   }
 
   .sorting {

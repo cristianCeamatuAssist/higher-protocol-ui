@@ -1,11 +1,11 @@
 import styled from 'styled-components'
 // components
-import { CandidatesTable, EmployerCalendar } from 'features/employer'
+import { CandidatesSmallTable, EmployerCalendar } from 'features/employer'
 
 export const EmployerAgenda = () => {
   return (
     <StyledDiv>
-      <CandidatesTable />
+      <CandidatesSmallTable />
       <EmployerCalendar />
     </StyledDiv>
   )

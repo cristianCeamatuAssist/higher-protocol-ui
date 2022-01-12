@@ -1,2 +1,2 @@
 export * from './demoData'
-export * from './components'
+export * from './components/candidates'

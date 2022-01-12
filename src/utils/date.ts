@@ -68,3 +68,60 @@ export const isValidDate = (value: string) => {
   const date = new Date(value)
   return date instanceof Date && !isNaN(date.getTime())
 }
+
+export const formatDateWithMonthText = (date: string) => {
+  if (!date) return ''
+  let monthText = ''
+
+  const year = date.slice(0, 4)
+  const month = date.slice(5, 7)
+  const day = date.slice(8, 10)
+
+  if (month === '01') {
+    monthText = 'Jan'
+  } else if (month === '02') {
+    monthText = 'Feb'
+  } else if (month === '03') {
+    monthText = 'Mar'
+  } else if (month === '04') {
+    monthText = 'Apr'
+  } else if (month === '05') {
+    monthText = 'May'
+  } else if (month === '06') {
+    monthText = 'Jun'
+  } else if (month === '07') {
+    monthText = 'Jul'
+  } else if (month === '08') {
+    monthText = 'Aug'
+  } else if (month === '09') {
+    monthText = 'Sep'
+  } else if (month === '10') {
+    monthText = 'Oct'
+  } else if (month === '11') {
+    monthText = 'Nov'
+  } else if (month === '12') {
+    monthText = 'Dec'
+  }
+
+  const wholeDate = `${day} ${monthText}, ${year}`
+  return wholeDate
+}
+
+export const formatDateDayMonthYear = (date: string) => {
+  if (!date) return ''
+  const year = date.slice(0, 4)
+  const month = date.slice(5, 7)
+  const day = date.slice(8, 10)
+
+  const wholeDate = `${day}/${month}/${year}`
+  return wholeDate
+}
+
+export const formatDateForInput = (date: string) => {
+  if (!date) return ''
+  const year = date.slice(0, 4)
+  const month = date.slice(5, 7)
+  const day = date.slice(8, 10)
+
+  return `${year}-${month}-${day}`
+}
