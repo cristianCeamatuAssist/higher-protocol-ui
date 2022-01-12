@@ -1,3 +1,4 @@
+export * from './array'
 export * from './string'
 export * from './api'
 export * from './http'

@@ -20,6 +20,11 @@ export const CandidatesTable = () => {
 
   const getRandomNumber = (until) => Math.floor(Math.random() * until) + 1
 
+  // handlers
+  const changePageHandler = (page) => {
+    console.log(`page`, page)
+  }
+
   // demo data
   const avatarsArray = [
     'https://i.pravatar.cc/150?u=1',
@@ -74,7 +79,11 @@ export const CandidatesTable = () => {
 
   return (
     <StyledDiv>
-      <Table columns={columns} rows={rows} />
+      <Table
+        columns={columns}
+        rows={rows}
+        pagination={{ itemsPerPage: 10, totalItems: candidates?.length || 0, page: 1, changePageHandler }}
+      />
     </StyledDiv>
   )
 }
@@ -84,7 +93,6 @@ const StyledDiv = styled.div`
   min-width: 800px;
   border: none;
   background: #f2f2f2;
-  box-shadow: 0px 4px 0px rgba(62, 73, 84, 0.04);
   overflow: hidden;
   flex: 1;
   margin-top: 1rem;

@@ -61,7 +61,7 @@ const theme = {
   },
 
   zIndex: {
-    sideBar: 200,
+    sideBar: 99900,
   },
 }
 

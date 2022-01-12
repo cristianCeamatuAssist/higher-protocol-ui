@@ -1,12 +1,11 @@
 import styled from 'styled-components'
-import cx from 'classnames'
-// styles and assets
-import { ReactComponent as CaretLeftDoubleIcon } from 'assets/images/table/CaretLeftDouble.svg'
-import { ReactComponent as CaretLeftSimpleIcon } from 'assets/images/table/CaretLeftSimple.svg'
-import { ReactComponent as CaretRightDoubleIcon } from 'assets/images/table/CaretRightDouble.svg'
-import { ReactComponent as CaretRightSimpleIcon } from 'assets/images/table/CaretRightSimple.svg'
+import { Button } from 'react-bootstrap'
+import { ReactComponent as CaretLeft } from 'assets/icons/CaretLeft.svg'
+import { ReactComponent as CaretRight } from 'assets/icons/CaretRight.svg'
 // components
-import { IPagination, Divider } from 'components'
+import { IPagination } from 'components'
+// utils
+import { range } from 'utils'
 
 interface IProps {
   pagination: IPagination
@@ -24,89 +23,79 @@ export const TablePagination = ({ pagination, hasResults }: IProps) => {
 
   // variables
   const totalPages = hasResults ? Math.ceil(pagination.totalItems / pagination.itemsPerPage) : 0
+  const { page, itemsPerPage, totalItems, changePageHandler } = pagination
+  const lastOnPage = Math.min(itemsPerPage, totalItems)
+  const firstOnPage = (page - 1) * itemsPerPage + 1
+  const pageButtons = range(1, Math.min(3, totalPages))
 
   return (
     <StyledDiv>
-      <Divider />
+      <p className="details">
+        Showing {firstOnPage} to {lastOnPage} of {totalItems} entries
+      </p>
 
-      <div className="pagination">
-        <div className="show-text">Items per page</div>
-        <select onChange={handleChange} value={pagination?.itemsPerPage}>
-          <option value="10">10</option>
-          <option value="20">20</option>
-          <option value="30">30</option>
-          <option value="40">40</option>
-        </select>
-        {/* <CaretRightDoubleIcon
-          className={cx({ disabled: !hasResults })}
-          onClick={() => pagination.page !== 1 && changePage(1)}
-        />
-        <CaretRightSimpleIcon
-          className={cx({ disabled: !hasResults })}
-          onClick={() => pagination.page - 1 > 0 && changePage(pagination.page - 1)}
-        />
-        <div className="page-number">
-          Page <span>{pagination.page}</span> of <span>{totalPages}</span>
-        </div>
-        <CaretLeftSimpleIcon
-          className={cx({ disabled: !hasResults })}
-          onClick={() => pagination.page + 1 <= totalPages && changePage(pagination.page + 1)}
-        />
-        <CaretLeftDoubleIcon
-          className={cx({ disabled: !hasResults })}
-          onClick={() => pagination.page !== totalPages && changePage(totalPages)}
-        /> */}
-      </div>
+      <CaretLeft width="12" height="12" onClick={() => page > 1 && changePage(page - 1)} />
+
+      {pageButtons.map((pageNumber) => (
+        <Button
+          variant="secondary"
+          className={pageNumber === page ? 'selected' : ''}
+          disabled={pageNumber === page}
+          key={pageNumber}
+          onClick={() => changePageHandler(pageNumber)}
+        >
+          {pageNumber}
+        </Button>
+      ))}
+
+      <CaretRight width="12" height="12"
+        style={{ transform: 'rotate(180deg)' }}
+        onClick={() => page < totalPages && changePageHandler(page + 1)}
+      />
     </StyledDiv>
   )
 }
 
 const StyledDiv = styled.div`
-  position: sticky;
-  bottom: 0;
-  inset-inline: 0;
-  width: 100%;
-  background-color: ${({ theme }) => theme.colors.white};
-  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  margin-top: 1em;
 
-  .pagination {
-    padding-block: 0.5em 1em;
-    padding-right: 1em;
-    display: flex;
-    justify-content: right;
-    align-items: center;
-    color: #395264;
-    font-size: 14px;
+  > .details {
+    color: #727279;
+    font-size: 12px;
+    line-height: 16px;
+    margin-bottom: 0;
+    margin-right: 1em;
+  }
 
-    svg {
+  > svg {
+    cursor: pointer;
+  }
+
+  button {
+    padding: 0;
+    width: 28px;
+    height: 28px;
+    border-radius: 14px;
+    color: black;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    box-shadow: none !important;
+
+    &:not(.selected) {
       cursor: pointer;
-      width: 10px;
-      height: 10px;
-      margin: 0 5px;
-
-      .disabled {
-        pointer-events: none;
-      }
     }
 
-    svg:hover:not(.disabled) {
-      path {
-        stroke: red;
-      }
-    }
+    &.selected {
+      color: white;
+      background-color: #4401d4;
 
-    .show-text {
-      line-height: 16px;
-      margin-right: 10px;
-      font-size: 12px;
-    }
-
-    .page-number {
-      line-height: 16px;
-      margin: 0 10px;
-
-      span {
-        font-weight: 600;
+      &:disabled {
+        opacity: 1;
       }
     }
   }

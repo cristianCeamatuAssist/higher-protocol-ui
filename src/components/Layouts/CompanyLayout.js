@@ -29,8 +29,9 @@ const StyledDiv = styled.div`
     height: 100%;
 
     .page-content {
-      padding: 9px 40px 79px;
+      padding: 9px 40px 40px;
       background-color: ${({ theme }) => theme.colors.bgWhite};
+      z-index: 1;
     }
   }
 `
