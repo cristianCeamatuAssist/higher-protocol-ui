@@ -1,6 +1,6 @@
 import useSWR from 'swr'
 import styled from 'styled-components'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 // styles and assets
 import { ReactComponent as CaretDown } from 'assets/icons/CaretDown.svg'
 import RowTogglerIconSrc from 'assets/images/options.png'
@@ -17,7 +17,8 @@ export const CandidatesSmallTable = () => {
     ...candidate,
     ...JSON.parse(candidate.personal_details),
   }))
-  console.log('candidates :>> ', candidates)
+
+  const navigate = useNavigate()
 
   const statusMapping = {
     video: {
@@ -29,13 +30,6 @@ export const CandidatesSmallTable = () => {
     interview: {
       label: 'Final Interview',
     },
-  }
-
-  const getMatchingScoreColor = (score) => {
-    if (score >= 80) return 'green'
-    if (score > 60) return 'light-orange'
-    if (score > 50) return 'orange'
-    return 'red'
   }
 
   const getRandomNumber = (until) => Math.floor(Math.random() * until) + 1
@@ -79,7 +73,7 @@ export const CandidatesSmallTable = () => {
       status: <TableBodyCell component={<CandidateStatus />} />,
       action: (
         <TableBodyActionCell>
-          <button>
+          <button onClick={() => navigate(`/candidates/${candidate.id}`)}>
             <img src={RowTogglerIconSrc} alt="Toggler Icon" />
           </button>
         </TableBodyActionCell>

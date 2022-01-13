@@ -1,3 +1,4 @@
+export * from './Candidate'
 export * from './Candidates'
 export * from './Jobs'
 export * from './Messages'

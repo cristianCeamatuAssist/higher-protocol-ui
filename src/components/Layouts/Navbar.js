@@ -1,7 +1,8 @@
 import styled from 'styled-components'
-import { useNavigate, useLocation } from 'react-router-dom'
+import { useNavigate, useLocation, Link, matchPath } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { Button } from 'react-bootstrap'
+import { get } from 'lodash'
 // styles and assets
 import LogoSmall from 'assets/images/logo-small.png'
 import SearchLogo from 'assets/images/search-bar-logo.png'
@@ -9,7 +10,7 @@ import MenuIcon from 'assets/images/ic_menu.png'
 // components
 import { NavButton } from 'components'
 // utils
-import { TOKEN_LINK } from 'utils'
+import { TOKEN_LINK, routes } from 'utils'
 // features
 import { signOut } from 'features/auth'
 
@@ -25,6 +26,19 @@ export const Navbar = () => {
     navigate('/login')
   }
 
+  // const matchedRoute = Object.values(routes).find((route) =>
+
+  // )
+  // const resourceName = useSelector((state) => get(state, matchedRoute?.reducerResourcePath))
+  // console.log(`matchedRoute`, matchedRoute)
+  // variables
+  // const isSingleResource = matchedRoute?.path.includes(':id') && resourceName
+  // const breadCrumpComponent = isSingleResource ? (
+  //   <Link to={matchedRoute?.path.replace('/:id', '')}>{matchedRoute.label}</Link>
+  // ) : (
+  //   matchedRoute?.label
+  // )
+
   // variables
   const breadCrump = location.pathname.slice(1)
 
@@ -33,7 +47,7 @@ export const Navbar = () => {
       <div className="left-side">
         <div className="menu-icon" />
         <p className="page-title text-capitalize">{breadCrump}</p>
-        {breadCrump === 'jobs' && <NavButton path="/jobs/create">Add new</NavButton>}
+        {breadCrump === 'jobs' && <NavButton to="/jobs/create">Add new</NavButton>}
       </div>
 
       <div className="right-side">

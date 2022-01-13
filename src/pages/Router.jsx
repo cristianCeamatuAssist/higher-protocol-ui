@@ -7,11 +7,11 @@ import { getAuthSession } from 'utils'
 // features
 import { setAuthSession } from 'features/auth'
 // pages
-import { Login, Dashboard, Candidates, Jobs, Messages, Assessments, Profiles, Statistics } from 'pages'
+import { Login, Dashboard, Candidates, Jobs, Messages, Assessments, Profiles, Statistics, Candidate } from 'pages'
 
 export const Router = () => {
   // global state
-  const { user } = useAppSelector((state) => state.authReducer)
+  const { user } = useAppSelector((state) => state.authReducer) || getAuthSession()
 
   // props and utils
   const dispatch = useAppDispatch()
@@ -28,6 +28,7 @@ export const Router = () => {
       {/* Signed in routes */}
       <Route element={(() => (user ? <Outlet /> : <Navigate replace to="login" />))()}>
         <Route path="/candidates" element={<Candidates />} />
+        <Route path="/candidates/:id" element={<Candidate />} />
         <Route path="/jobs" element={<Jobs />} />
         <Route path="/assessments" element={<Assessments />} />
         <Route path="/profiles" element={<Profiles />} />

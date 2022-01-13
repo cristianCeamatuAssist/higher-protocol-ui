@@ -1,6 +1,6 @@
 import useSWR from 'swr'
 import styled from 'styled-components'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 // styles and assets
 import RowTogglerIconSrc from 'assets/images/options.png'
 // components
@@ -8,7 +8,7 @@ import { Table, TableBodyCell, TableBodyActionCell } from 'components'
 // utils
 import { getResource, formatDateWithMonthText } from 'utils'
 // features
-import { CandidateMatchScore } from 'features/employer'
+import { CandidateMatchScore, avatarsArray, getRandomNumber } from 'features/employer'
 
 export const CandidatesTable = () => {
   const { data, error } = useSWR('/candidates', getResource)
@@ -16,22 +16,13 @@ export const CandidatesTable = () => {
     ...candidate,
     ...JSON.parse(candidate.personal_details),
   }))
-  console.log('candidates :>> ', candidates)
 
-  const getRandomNumber = (until) => Math.floor(Math.random() * until) + 1
+  const navigate = useNavigate()
 
   // handlers
   const changePageHandler = (page) => {
     console.log(`page`, page)
   }
-
-  // demo data
-  const avatarsArray = [
-    'https://i.pravatar.cc/150?u=1',
-    'https://i.pravatar.cc/150?u=2',
-    'https://i.pravatar.cc/150?u=3',
-    'https://i.pravatar.cc/150?u=4',
-  ]
 
   // variables
   const columns = [
@@ -69,7 +60,7 @@ export const CandidatesTable = () => {
       // status: <TableBodyCell component={<CandidateStatus />} />,
       action: (
         <TableBodyActionCell>
-          <button>
+          <button onClick={() => navigate(`/candidates/${candidate.id}`)}>
             <img src={RowTogglerIconSrc} alt="Toggler Icon" />
           </button>
         </TableBodyActionCell>
