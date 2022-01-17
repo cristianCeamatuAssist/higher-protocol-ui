@@ -1,9 +1,10 @@
 import styled from 'styled-components'
-// import ReactTooltip from 'react-tooltip'
+import HashLogo from 'assets/images/hash-logo.png'
+import CopyLogo from 'assets/images/copy-logo.png'
 
 export const BlockCertification = ({ hashLink, hashName, title, subtitle, authority, certification_date }) => {
   return (
-    <Div id={`popover-positioned-${Math.random() * 1000}`}>
+    <Div id={`popover-positioned-${Math.random() * 1000}`} onClick={(e) => e.stopPropagation()}>
       <i className="hash-logo" />
       <div className="tooltip-content">
         <p className="title">Facultatea de Inginerie Electrică şi Ştiinţa Calculatoarelor</p>
@@ -29,14 +30,16 @@ export const BlockCertification = ({ hashLink, hashName, title, subtitle, author
 }
 
 const Div = styled.div`
-  background-color: white;
-  box-shadow: 4px 4px 4px 4px rgba(62, 73, 84, 0.04);
+  background: #ffffff;
+  box-shadow: ${({ theme }) => theme.shadows.light};
+  border-radius: 10px;
   color: black;
-  opacity: 1 !important;
   padding: 22px 27px 0;
-  border: 1px solid #808080;
+  border: 1px solid rgba(255, 255, 255, 0.2);
   display: flex;
-  max-width: 640px;
+  border: none;
+  width: 640px;
+  opacity: 1 !important;
 
   &:after {
     content: none !important;
@@ -44,14 +47,14 @@ const Div = styled.div`
 
   .hash-logo {
     display: block;
-    background: url(../images/hash-logo.png) no-repeat center;
+    background: url(${HashLogo}) no-repeat center;
     width: 50px;
     height: 48px;
   }
 
   .copy-hash {
     display: inline-block;
-    background: url(../images/copy-logo.png);
+    background: url(${CopyLogo});
     width: 16px;
     height: 16px;
     margin-left: 10px;

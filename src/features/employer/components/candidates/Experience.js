@@ -1,6 +1,6 @@
-import { Popover } from 'react-bootstrap'
-import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
+import { useState } from 'react'
 import styled from 'styled-components'
+import ReactTooltip from 'react-tooltip'
 import company_logousv from 'assets/images/company_logo-usv.png'
 import company_logousv2 from 'assets/images/company_logo-usv.png'
 import company_logoassist from 'assets/images/company_logo-assist.png'
@@ -12,25 +12,28 @@ import checkmarkwaiting from 'assets/images/checkmark-waiting.png'
 import { BlockCertification } from 'components'
 
 export const Experience = ({ experience }) => {
+  const [show, setShow] = useState(false)
+
+  const toggleShow = () => setShow((state) => !state)
   return (
     <StyledDiv>
       <div className="logo">
         {experience.logo === 'usv' && <div className={`company-logo ${experience.logo}`} />}
         {experience.logo !== 'usv' && <div className={`company-logo ${experience.logo}`} />}
-        <OverlayTrigger
-          trigger={['click']}
-          key={Math.random() * 1000}
-          placement="right"
-          defaultShow={true}
-          show={true}
-          overlay={
-            <StyledPopover id={`popover-positioned-${Math.random() * 1000}`}>
-              <BlockCertification />
-            </StyledPopover>
-          }
-        >
+        {/* <Div onClick={toggleShow}>
           <div className={`p-relative checkmark ${experience.checked ? 'waiting' : 'checked'}`} />
-        </OverlayTrigger>
+          {show && (
+            <div className="certification">
+              {' '}
+              <BlockCertification />
+            </div>
+          )}
+        </Div> */}
+        <div
+          data-tip
+          data-for="global"
+          className={`p-relative checkmark ${experience.checked ? 'waiting' : 'checked'}`}
+        />
       </div>
       <div className="display">
         <div className="duo">
@@ -49,15 +52,23 @@ export const Experience = ({ experience }) => {
           </div>
         )}
       </div>
+
+      <ReactTooltip
+        id="global"
+        place="right"
+        aria-haspopup="true"
+        role="example"
+        type="dark"
+        className="experience_tooltip"
+        effect="solid"
+        event="click"
+        backgroundColor="transparent"
+      >
+        <BlockCertification />
+      </ReactTooltip>
     </StyledDiv>
   )
 }
-
-const StyledPopover = styled(Popover)`
-  .popover-arrow {
-    display: none;
-  }
-`
 
 const StyledDiv = styled.div`
   display: flex;

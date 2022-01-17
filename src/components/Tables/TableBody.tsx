@@ -1,5 +1,5 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import {
   IColumn,
   IRow,
@@ -27,7 +27,7 @@ export const TableBody = ({ isLoading, error, rows, columns, hiddenColumns, noDa
   }
 
   return (
-    <StyledTbody>
+    <StyledTbody noData={!rows?.length}>
       <tr className="bg-white content-states-wrapper">
         {isLoading && (
           <td colSpan={columns?.length}>
@@ -37,7 +37,6 @@ export const TableBody = ({ isLoading, error, rows, columns, hiddenColumns, noDa
 
         {error && !isLoading && (
           <td colSpan={columns?.length}>
-            {' '}
             <TableBodyNoData
               iconComponent={<LoadingAnimation />}
               title={error}
@@ -88,7 +87,13 @@ export const TableBody = ({ isLoading, error, rows, columns, hiddenColumns, noDa
   )
 }
 
-const StyledTbody = styled.tbody`
+const StyledTbody = styled.tbody<{ noData: boolean }>`
+  ${({ noData }) =>
+    noData &&
+    css`
+      pointer-events: none;
+    `}
+
   tr {
     td.sticky {
     }
