@@ -1,6 +1,7 @@
 export * from './Candidate'
 export * from './Candidates'
 export * from './Jobs'
+export * from './Job'
 export * from './Messages'
 export * from './Assessments'
 export * from './Profiles'

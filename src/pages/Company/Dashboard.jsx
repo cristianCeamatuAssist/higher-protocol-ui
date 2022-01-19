@@ -4,36 +4,9 @@ import FakeGraphImage from 'assets/images/fakes/fakeGraph.svg'
 // components
 import { Card, CompanyLayout } from 'components'
 // features
-import { EmployerAgenda } from 'features/employer'
+import { EmployerAgenda, cards } from 'features/employer'
 
 export const Dashboard = () => {
-  const cards = [
-    {
-      backgroundColor: '#48A9F8',
-      title: 'Applications Received',
-      value: 75,
-      logo: 'applications-logo',
-    },
-    {
-      backgroundColor: '#4E36E2',
-      title: 'Interviews Schedule',
-      value: 75,
-      logo: 'schedule-logo',
-    },
-    {
-      backgroundColor: '#1BD084',
-      title: 'Profiles Viewed',
-      value: 75,
-      logo: 'profiles-logo',
-    },
-    {
-      backgroundColor: '#8BC740',
-      title: 'Unread messages',
-      value: 75,
-      logo: 'messages-logo',
-    },
-  ]
-
   return (
     <CompanyLayout>
       <StyledDiv>

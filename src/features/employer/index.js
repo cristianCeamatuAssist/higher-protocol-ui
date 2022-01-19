@@ -1,2 +1,2 @@
-export * from './demoData'
+export * from './model'
 export * from './components'

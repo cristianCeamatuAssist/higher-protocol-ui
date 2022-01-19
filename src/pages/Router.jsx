@@ -7,7 +7,7 @@ import { getAuthSession } from 'utils'
 // features
 import { setAuthSession } from 'features/auth'
 // pages
-import { Login, Dashboard, Candidates, Jobs, Messages, Assessments, Profiles, Statistics, Candidate } from 'pages'
+import { Login, Dashboard, Candidates, Jobs, Messages, Assessments, Profiles, Statistics, Candidate, Job } from 'pages'
 
 export const Router = () => {
   // global state
@@ -30,6 +30,7 @@ export const Router = () => {
         <Route path="/candidates" element={<Candidates />} />
         <Route path="/candidates/:id" element={<Candidate />} />
         <Route path="/jobs" element={<Jobs />} />
+        <Route path="/jobs/:id" element={<Job />} />
         <Route path="/assessments" element={<Assessments />} />
         <Route path="/profiles" element={<Profiles />} />
         <Route path="/statistics" element={<Statistics />} />

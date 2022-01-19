@@ -48,7 +48,9 @@ export const TablePagination = ({ pagination, hasResults }: IProps) => {
         </Button>
       ))}
 
-      <CaretRight width="12" height="12"
+      <CaretRight
+        width="12"
+        height="12"
         style={{ transform: 'rotate(180deg)' }}
         onClick={() => page < totalPages && changePageHandler(page + 1)}
       />
@@ -62,6 +64,7 @@ const StyledDiv = styled.div`
   justify-content: flex-end;
   gap: 0.5rem;
   margin-top: 1em;
+  padding-inline: 1rem;
 
   > .details {
     color: #727279;

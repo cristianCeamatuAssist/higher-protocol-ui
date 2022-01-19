@@ -1,11 +1,14 @@
 import styled from 'styled-components'
 // components
 import { CompanyLayout } from 'components'
-
+// features
+import { JobsTable } from 'features/employer'
 export const Jobs = () => {
   return (
     <CompanyLayout>
-      <StyledDiv>Jobs</StyledDiv>
+      <StyledDiv>
+        <JobsTable />
+      </StyledDiv>
     </CompanyLayout>
   )
 }
