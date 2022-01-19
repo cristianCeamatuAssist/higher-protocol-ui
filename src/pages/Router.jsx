@@ -7,7 +7,20 @@ import { getAuthSession } from 'utils'
 // features
 import { setAuthSession } from 'features/auth'
 // pages
-import { Login, Dashboard, Candidates, Jobs, Messages, Assessments, Profiles, Statistics, Candidate, Job } from 'pages'
+import {
+  Login,
+  Dashboard,
+  Candidates,
+  Jobs,
+  Messages,
+  Assessments,
+  Profiles,
+  Statistics,
+  Candidate,
+  Job,
+  CreateJob,
+  routes,
+} from 'pages'
 
 export const Router = () => {
   // global state
@@ -17,6 +30,7 @@ export const Router = () => {
   const dispatch = useAppDispatch()
   useEffect(() => {
     const authSession = getAuthSession()
+    console.log('authSession :>> ', authSession);
     dispatch(setAuthSession(authSession))
   }, [dispatch])
 
@@ -31,6 +45,7 @@ export const Router = () => {
         <Route path="/candidates/:id" element={<Candidate />} />
         <Route path="/jobs" element={<Jobs />} />
         <Route path="/jobs/:id" element={<Job />} />
+        <Route path={routes.jobsCreate.path} element={<CreateJob />} />
         <Route path="/assessments" element={<Assessments />} />
         <Route path="/profiles" element={<Profiles />} />
         <Route path="/statistics" element={<Statistics />} />

@@ -32,4 +32,4 @@ export const focus = (id: string) => {
   }
 }
 
-export default { scrollElementToBottom, scrollIntoView, focusAndSelect, focus }
+export const dom = { scrollElementToBottom, scrollIntoView, focusAndSelect, focus }

@@ -1,11 +1,11 @@
 import { NavLink } from 'react-router-dom'
-import { Button } from 'react-bootstrap'
+import { Button } from 'components'
 import styled from 'styled-components'
 
 export const NavButton = ({ to, onClick, children }) => {
   return (
     <StyledNavLink to={to}>
-      <Button variant="primary" className="action_button" onClick={onClick}>
+      <Button color="primary" className="action_button" onClick={onClick}>
         <span className="px-4">{children}</span>
       </Button>
     </StyledNavLink>

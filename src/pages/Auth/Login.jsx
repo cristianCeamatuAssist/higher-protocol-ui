@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux'
 import { ButtonGroup, Button as BButton } from 'react-bootstrap'
 import { Link, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
+import cx from 'classnames'
 // styles and assets
 import { ReactComponent as Logo } from 'assets/images/logo.svg'
 import { ReactComponent as FacebookLogo } from 'assets/images/FacebookLogo.svg'
@@ -10,9 +11,9 @@ import { ReactComponent as LinkedinLogo } from 'assets/images/LinkedinLogo.svg'
 import { ReactComponent as GoogleLogo } from 'assets/images/GoogleLogo.svg'
 import LoginShowcaseImageSrc from 'assets/images/image30.png'
 // components
-import { Button } from 'components'
+import { Button, LoadingAnimation } from 'components'
 // utils
-import { apiRequestWithStatesHandler, setSessionInStorage } from 'utils'
+import { apiRequestWithStatesHandler } from 'utils'
 // features
 import { authApi, setAuthSession } from 'features/auth'
 
@@ -29,6 +30,7 @@ export const Login = () => {
     // signIn(data)
     const session = await apiRequestWithStatesHandler(() => authApi.signIn(data), setIsLoading, setError)
     if (session) {
+      console.log('session', session)
       dispatch(setAuthSession(session))
       navigate('/')
     }
@@ -61,20 +63,20 @@ export const Login = () => {
           </ButtonGroup>
 
           <div className="login-input">
-            <span>
+            <span className={cx('helper-text mb-1 rounded', { error })}>
               <label htmlFor="login" className="helper-text">
                 Email Address
               </label>
               <input
                 type="email"
                 name="email"
-                className="form-control shadow-none"
+                className="form-control shadow-none b"
                 id="login"
                 value={data.email}
                 onChange={handleChange}
               />
             </span>
-            <span>
+            <span className={cx('helper-text', { error })}>
               <label htmlFor="password" className="helper-text">
                 Password
               </label>
@@ -102,8 +104,9 @@ export const Login = () => {
           </div>
 
           <div className="login-buttons">
-            <Button type="button" color="primary" id="login-btn" className="shadow-none" onClick={handleLogin}>
+            <Button type="button" color="primary" id="login-btn" onClick={handleLogin} disabled={isLoading}>
               Login
+              {isLoading && <LoadingAnimation />}
             </Button>
             <Button id="signup" className="shadow-none" variant="outlined">
               Sign Up
@@ -199,6 +202,10 @@ const StyledDiv = styled.div`
     }
 
     .login-input {
+      span.error {
+        border: 1px solid #e94141;
+      }
+
       input {
         height: 74px;
         border-radius: 0;

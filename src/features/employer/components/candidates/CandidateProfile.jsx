@@ -4,8 +4,6 @@ import ReadMoreSrc from 'assets/images/read-more-logo.png'
 import { Experience, Skill } from 'features/employer'
 
 export const CandidateProfile = ({ candidate }) => {
-  console.log(`candidate`, candidate)
-  console.log(`JSON.parse(candidate.experiences)`, JSON.parse(candidate.experiences))
   const { first_name, last_name, gender, birth_date, about, experiences, licences, hard_skills, soft_skills, degree } =
     {
       ...candidate,

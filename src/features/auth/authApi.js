@@ -7,6 +7,7 @@ export const signIn = async (body) => {
   storage.setAuthToken(token)
 
   const { data: user } = await http.get('/profile')
+  storage.setAuthUser(user)
 
   return {
     user,

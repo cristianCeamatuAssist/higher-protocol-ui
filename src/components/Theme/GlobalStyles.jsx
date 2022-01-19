@@ -30,4 +30,9 @@ export default createGlobalStyle`
       outline: none;
       border: none;
     }
+
+    [disabled] {
+      pointer-events: none;
+      opacity: 0.8;
+    }
 `

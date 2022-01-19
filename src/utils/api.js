@@ -2,8 +2,8 @@ export const apiRequestWithStatesHandler = async (fetcher, setIsLoading, setErro
   setError(false)
   setIsLoading(true)
   try {
-    setIsLoading(false)
     const res = await fetcher()
+    setIsLoading(false)
     return res
   } catch (error) {
     setIsLoading(false)

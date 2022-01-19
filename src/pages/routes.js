@@ -23,6 +23,12 @@ export const routes = {
     exact: true,
   },
 
+  jobsCreate: {
+    path: '/jobs/create',
+    label: 'Add new job',
+    exact: true,
+  },
+
   job: {
     path: '/jobs/:id',
     label: 'Jobs',

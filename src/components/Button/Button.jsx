@@ -18,6 +18,9 @@ export const Button = ({ children, type, variant, size, color, invertOnHover, da
 }
 
 const StyledButton = styled.button`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   border-radius: 40px;
   padding: 0.5rem 1rem;
   color: ${({ color, theme }) => (color ? theme.colors.white : theme.colors.dark)};

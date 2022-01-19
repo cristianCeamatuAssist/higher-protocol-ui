@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { useNavigate, useLocation, Link, matchPath } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import { Button } from 'react-bootstrap'
+import { Button as BsButton } from 'react-bootstrap'
 import { get } from 'lodash'
 // styles and assets
 import LogoSmall from 'assets/images/logo-small.png'
@@ -47,12 +47,12 @@ export const Navbar = () => {
       <div className="left-side">
         <div className="menu-icon" />
         <p className="page-title text-capitalize">{breadCrump}</p>
-        {breadCrump === 'jobs' && <NavButton to="/jobs/create">Add new</NavButton>}
+        {breadCrump === 'jobs' && <NavButton to={routes.jobsCreate.path}>Add new</NavButton>}
       </div>
 
       <div className="right-side">
         <input className="search-bar" type="text" placeholder="Search for something here..." />
-        <Button variant="secondary" className="search-logo" />
+        <BsButton variant="secondary" className="search-logo" />
         <div className="notifications">
           <a href={TOKEN_LINK} target="_blank" rel="noreferrer" className="small-logo">
             {' '}

@@ -11,9 +11,8 @@ import { CandidateDetailsCard, CandidateProfile } from 'features/employer'
 export const Candidate = () => {
   const { id } = useParams()
 
-  const { data, error } = useSWRImmutable(`/candidates/${id}`, getResource)
+  const { data } = useSWRImmutable(`/candidates/${id}`, getResource)
   const candidate = data?.map((candidate) => ({ ...candidate, ...JSON.parse(candidate.personal_details) }))[0]
-  console.log(`candidate`, candidate?.personal_details)
 
   return (
     <CompanyLayout>

@@ -20,18 +20,6 @@ export const JobCandidatesTable = () => {
 
   const navigate = useNavigate()
 
-  const statusMapping = {
-    video: {
-      label: 'Applications Received',
-    },
-    screening: {
-      label: 'Screening',
-    },
-    interview: {
-      label: 'Final Interview',
-    },
-  }
-
   const getRandomNumber = (until) => Math.floor(Math.random() * until) + 1
 
   // handlers

@@ -1,6 +1,6 @@
 import useSWR from 'swr'
 import styled from 'styled-components'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 // styles and assets
 import RowTogglerIconSrc from 'assets/images/options.png'
 // components
@@ -11,13 +11,12 @@ import { getResource, formatDateWithMonthText } from 'utils'
 import { jobsIconsArray, getRandomNumber } from 'features/employer'
 
 export const JobsTable = () => {
-  const { data: jobs, error } = useSWR('/jobs', getResource)
-  const navigate = useNavigate()
+  const { data: jobs } = useSWR('/jobs', getResource)
 
   // handlers
-  const changePageHandler = (page) => {
-    console.log(`page`, page)
-  }
+  // const changePageHandler = (page) => {
+  //   console.log(`page`, page)
+  // }
 
   // variables
   const columns = [

@@ -7,6 +7,6 @@ interface IProps {
   className?: string
 }
 
-export const LoadingAnimation = ({ animation, size, className, variant }: IProps) => {
-  return <Spinner animation={animation || 'grow'} variant={variant || 'primary'} size={size} className={className} />
+export const LoadingAnimation = ({ animation = 'grow', size = 'sm', className, variant = 'light' }: IProps) => {
+  return <Spinner animation={animation} variant={variant || 'primary'} size={size} className={className} />
 }
