@@ -17,7 +17,7 @@ export const Dashboard = () => {
         </div>
 
         <div className="graph">
-          <img className="img-fluid" src={FakeGraphImage} layout="responsive" alt="Graph" />
+          <img className="img-fluid w-100" src={FakeGraphImage} layout="responsive" alt="Graph" />
         </div>
 
         <EmployerAgenda />
@@ -39,6 +39,7 @@ const StyledDiv = styled.div`
     background-color: white;
     border-radius: 20px;
     margin-bottom: 24px;
+    width: 100%;
 
     img {
       object-fit: fill;
