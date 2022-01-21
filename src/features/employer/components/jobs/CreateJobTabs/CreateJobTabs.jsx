@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Card, Tabs, Tab } from 'react-bootstrap'
+import { Card } from 'react-bootstrap'
 import { TabsBlock } from 'components'
 // features
 import { JobDescriptionTab, JobSmartContractTab, JobAssessmentTab } from 'features/employer'

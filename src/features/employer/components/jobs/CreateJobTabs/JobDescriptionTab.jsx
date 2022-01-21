@@ -90,31 +90,41 @@ export class JobDescriptionTab extends Component {
             <TextAreaPrime placeholder="Job brief" />
           </div>
           <div className="col-sm">
-            <TextAreaPrime placeholder="Responsabilities" />
+            <TextAreaPrime placeholder="Responsibilities" />
           </div>
         </div>
 
-        <div className="row margin-tb-sm">
-          <span className="big_label">Matching candidate</span>
-        </div>
+        <div className="row">
+          <div className="col-6">
+            <div className="row margin-tb-sm ">
+              <span className="big_label">Matching candidate</span>
+            </div>
 
-        <div className="row margin-tb-sm">
-          <div className="col-sm-3">
-            <span className="subtitle">Hard Skills</span>
-            <div className="row-candidate">
-              <span>New+</span> <ReactStars {...this.starDesc} />
+            <div className="row margin-tb-sm w-100">
+              <div className="col-sm-6">
+                <span className="subtitle">Hard Skills</span>
+                <div className="row-candidate">
+                  <span>New+</span> <ReactStars {...this.starDesc} />
+                </div>
+              </div>
+
+              <div className="col-sm-6">
+                <span className="subtitle">Soft Skills</span>
+                <div className="row-candidate">
+                  <span>New+</span> <ReactStars {...this.starDesc} />
+                </div>
+              </div>
             </div>
           </div>
 
-          <div className="col-sm-3">
-            <span className="subtitle">Soft Skills</span>
-            <div className="row-candidate">
-              <span>New+</span> <ReactStars {...this.starDesc} />
+          <div className="col-6">
+            <div className="row my-3">
+              <span className="big_label">Candidate score</span>
             </div>
-          </div>
 
-          <div className="col-sm-4 matching-score">
-            <Dropdown placeholder="Matching score" values={this.score} />
+            <div className="row">
+              <Dropdown placeholder="Matching score" values={this.score} />
+            </div>
           </div>
         </div>
 

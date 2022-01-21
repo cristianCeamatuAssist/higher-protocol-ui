@@ -29,10 +29,10 @@ export const Dashboard = () => {
 const StyledDiv = styled.div`
   .cards {
     margin-bottom: 31px;
-    display: flex;
-    justify-content: stretch;
-    flex-wrap: wrap;
     gap: 1.5em;
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(4, minmax(220px, 1fr));
   }
 
   .graph {
