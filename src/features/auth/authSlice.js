@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 // import store from 'redux/store'
-import { removeSession, setSessionInStorage } from 'utils'
+import { removeSession } from 'utils'
 
 // http.defaults.baseURL = process.env.REACT_APP_SERVERS_FACTORY_API_BASE_URL
 

@@ -28,9 +28,8 @@ export const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault()
     // signIn(data)
-    const session = await apiRequestWithStatesHandler(() => authApi.signIn(data), setIsLoading, setError)
+    const { data: session } = await apiRequestWithStatesHandler(() => authApi.signIn(data), setIsLoading, setError)
     if (session) {
-      console.log('session', session)
       dispatch(setAuthSession(session))
       navigate('/')
     }
