@@ -1,13 +1,16 @@
 export const apiRequestWithStatesHandler = async (fetcher, setIsLoading, setError) => {
+  let data = undefined
+  let error = undefined
   setError(false)
   setIsLoading(true)
   try {
-    const res = await fetcher()
+    data = await fetcher()
     setIsLoading(false)
-    return res
-  } catch (error) {
+  } catch (err) {
     setIsLoading(false)
-    setError(error?.response?.message || 'Something went wrong....')
-    return undefined
+    setError(err?.response?.message || 'Something went wrong....')
+    error = error?.response?.message || 'Something went wrong....'
   }
+
+  return { data, error }
 }

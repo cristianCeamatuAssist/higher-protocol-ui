@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import styled from 'styled-components'
+import cx from 'classnames'
 import { Tabs, Tab, TabPane } from 'react-bootstrap'
 
 const TabsComponent = ({ tabs, activeTab }) => {
@@ -14,8 +15,8 @@ const TabsComponent = ({ tabs, activeTab }) => {
       mountOnEnter
       unmountOnExit
     >
-      {tabs?.map((tab) => {
-        const { eventKey, navIcon, navText, content } = tab
+      {tabs?.map((tab, i) => {
+        const { eventKey, navIcon, navText, content, disabled } = tab
 
         return (
           <Tab
@@ -26,6 +27,8 @@ const TabsComponent = ({ tabs, activeTab }) => {
                 {navIcon} {navText}
               </span>
             }
+            disabled={disabled}
+            tabClassName={cx({ pendingAction: i > 0 && !disabled })}
           >
             <TabPane>{content}</TabPane>
           </Tab>
@@ -63,6 +66,21 @@ const StyledTabs = styled(Tabs)`
         right: 0;
         height: 2px;
         background: #4401d4;
+      }
+    }
+
+    &:not(.active).pendingAction {
+      position: relative;
+
+      &::after {
+        position: absolute;
+        right: 0;
+        top: 0.3rem;
+        content: '';
+        width: 12px;
+        height: 12px;
+        border-radius: 50px;
+        background: linear-gradient(0deg, #1bd084, #1bd084), #1bd084;
       }
     }
   }

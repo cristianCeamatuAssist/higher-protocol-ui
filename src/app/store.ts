@@ -1,9 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit'
 
 import { authReducer } from 'features/auth'
+import { employerReducer as employer } from 'features/employer'
 
 export const store = configureStore({
-  reducer: { authReducer },
+  reducer: { authReducer, employer },
 })
 
 // Infer the `RootState` and `AppDispatch` types from the store itself

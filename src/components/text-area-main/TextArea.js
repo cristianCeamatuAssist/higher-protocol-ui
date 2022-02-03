@@ -6,6 +6,8 @@ const TextAreaPrime = (props) => (
       rows="5"
       placeholder={props.placeholder}
       onChange={props.onChange}
+      value={props.value}
+      name={props.name}
     />
   </div>
 )

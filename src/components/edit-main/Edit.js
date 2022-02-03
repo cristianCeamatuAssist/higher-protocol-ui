@@ -1,32 +1,23 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 const EditPrime = (props) => (
-  <Div className="edit-input">
-    {!props.hideLabel && (
-      <span>
+  <Div className="edit-input" hasLabel={!props.hideLabel}>
+    <span>
+      {!props.hideLabel && (
         <label htmlFor="login" className="helper-text">
           {props.title}
         </label>
-        <input
-          type={props.type}
-          className="form-control shadow-none"
-          id="login"
-          placeholder={props.placeholder}
-          value={props.value}
-          onChange={props.onChange}
-        />
-      </span>
-    )}
-    {props.hideLabel && (
+      )}
       <input
         type={props.type}
         className="form-control shadow-none"
         id="login"
         placeholder={props.placeholder}
         value={props.value}
+        name={props.name}
         onChange={props.onChange}
       />
-    )}
+    </span>
   </Div>
 )
 
@@ -34,7 +25,6 @@ export default EditPrime
 
 const Div = styled.div`
   input {
-    /* border-radius: 0; */
     border: 1px solid #c1bbbb;
     font-size: 18px;
 
@@ -44,20 +34,24 @@ const Div = styled.div`
     }
   }
 
-  span {
-    position: relative;
-    display: block;
+  ${(hasLabel) =>
+    hasLabel === true &&
+    css`
+      span {
+        position: relative;
+        display: block;
 
-    label {
-      position: absolute;
-      z-index: 1;
-      margin-left: 27px;
-      margin-top: 12px;
-    }
+        label {
+          position: absolute;
+          z-index: 1;
+          margin-left: 27px;
+          margin-top: 12px;
+        }
 
-    input {
-      padding-top: 39px;
-      padding-left: 27px;
-    }
-  }
+        input {
+          padding-top: 39px;
+          padding-left: 27px;
+        }
+      }
+    `}
 `

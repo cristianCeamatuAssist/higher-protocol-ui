@@ -81,7 +81,11 @@ const StyledButton = styled.button`
   ${({ disabled }) =>
     disabled &&
     css`
+      color: #fff;
       pointer-events: none;
       opacity: 0.7;
+      background: #cbcbcb;
+      border: 1px solid #cbcbcb;
+      box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.25);
     `};
 `

@@ -1,9 +1,12 @@
 import styled from 'styled-components'
+import { useSelector } from 'react-redux'
 import { Card } from 'react-bootstrap'
 import { TabsBlock } from 'components'
 // features
 import { JobDescriptionTab, JobSmartContractTab, JobAssessmentTab } from 'features/employer'
 export const CreateJobTabs = () => {
+  const { job } = useSelector((state) => state.employer)
+
   const tabs = [
     {
       eventKey: 'home',
@@ -14,11 +17,13 @@ export const CreateJobTabs = () => {
       eventKey: 'smart-contract',
       navText: 'Smart Contract',
       content: <JobSmartContractTab />,
+      disabled: !job,
     },
     {
       eventKey: 'assessment',
       navText: 'Assessment',
       content: <JobAssessmentTab />,
+      disabled: !job,
     },
   ]
 
