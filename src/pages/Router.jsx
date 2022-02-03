@@ -30,7 +30,6 @@ export const Router = () => {
   const dispatch = useAppDispatch()
   useEffect(() => {
     const authSession = getAuthSession()
-    console.log('authSession :>> ', authSession);
     dispatch(setAuthSession(authSession))
   }, [dispatch])
 
