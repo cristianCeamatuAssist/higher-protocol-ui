@@ -40,7 +40,7 @@ export const JobDescriptionTab = () => {
     responsibilities: 'Must do magic in React',
     candidate_score: '90',
     hard_skills: { kotlin: 2.5, android: 4 },
-    soft_skills: { communication: 4.5, teamwork: 4.5 },
+    soft_skills: { creativity: 4.5, teamwork: 4.5 },
   })
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState(null)
@@ -172,66 +172,72 @@ export const JobDescriptionTab = () => {
       </div>
 
       <div className="row mb-4">
-        <div className="row margin-tb-sm ">
-          <span className="big_label">Matching candidate</span>
+        <div className="row margin-tb-sm">
+          <div className="col-6">
+            <span className="big_label">Matching candidate</span>
+          </div>
+
+          <div className="col-6">
+            <span className="big_label">Candidate score</span>
+          </div>
         </div>
 
         <div className="row">
-          <div className="col-sm-4">
-            <span className="subtitle">Hard Skills</span>
-            <div className="row-candidate">
-              <span>Kotlin</span>{' '}
-              <ReactStars
-                {...starSettings}
-                edit={true}
-                value={hard_skills.kotlin}
-                onChange={(value) => changeSkillHandler('hard_skills', 'kotlin', value)}
-              />
-            </div>
-            <div className="row-candidate">
-              <span>Android</span>{' '}
-              <ReactStars
-                {...starSettings}
-                edit={true}
-                value={hard_skills.android}
-                onChange={(value) => changeSkillHandler('hard_skills', 'android', value)}
-              />
-            </div>
-            <div className="row-candidate">
-              <span>New+</span> <ReactStars {...starSettings} />
+          <div className="col-6">
+            <div className="row">
+              <div className="col-sm-6">
+                <span className="subtitle">Hard Skills</span>
+                <div className="row-candidate gap-0">
+                  <span>Kotlin</span>{' '}
+                  <ReactStars
+                    {...starSettings}
+                    edit={true}
+                    value={hard_skills.kotlin}
+                    onChange={(value) => changeSkillHandler('hard_skills', 'kotlin', value)}
+                  />
+                </div>
+                <div className="row-candidate gap-0">
+                  <span>Android</span>{' '}
+                  <ReactStars
+                    {...starSettings}
+                    edit={true}
+                    value={hard_skills.android}
+                    onChange={(value) => changeSkillHandler('hard_skills', 'android', value)}
+                  />
+                </div>
+                <div className="row-candidate gap-0">
+                  <span>New+</span> <ReactStars {...starSettings} />
+                </div>
+              </div>
+
+              <div className="col-sm-6">
+                <span className="subtitle">Soft Skills</span>
+                <div className="row-candidate gap-0">
+                  <span>Creativity</span>{' '}
+                  <ReactStars
+                    {...starSettings}
+                    edit={true}
+                    value={soft_skills.creativity}
+                    onChange={(value) => changeSkillHandler('soft_skills', 'creativity', value)}
+                  />
+                </div>
+                <div className="row-candidate gap-0">
+                  <span>Teamwork</span>{' '}
+                  <ReactStars
+                    {...starSettings}
+                    edit={true}
+                    value={soft_skills.teamwork}
+                    onChange={(value) => changeSkillHandler('soft_skills', 'teamwork', value)}
+                  />
+                </div>
+                <div className="row-candidate gap-0">
+                  <span>New+</span> <ReactStars {...starSettings} />
+                </div>
+              </div>
             </div>
           </div>
 
-          <div className="col-sm-4">
-            <span className="subtitle">Soft Skills</span>
-            <div className="row-candidate">
-              <span>Communication</span>{' '}
-              <ReactStars
-                {...starSettings}
-                edit={true}
-                value={soft_skills.communication}
-                onChange={(value) => changeSkillHandler('soft_skills', 'communication', value)}
-              />
-            </div>
-            <div className="row-candidate">
-              <span>Teamwork</span>{' '}
-              <ReactStars
-                {...starSettings}
-                edit={true}
-                value={soft_skills.teamwork}
-                onChange={(value) => changeSkillHandler('soft_skills', 'teamwork', value)}
-              />
-            </div>
-            <div className="row-candidate">
-              <span>New+</span> <ReactStars {...starSettings} />
-            </div>
-          </div>
-
-          <div className="col-sm-4">
-            <div className="row my-3">
-              <span className="big_label">Candidate score</span>
-            </div>
-
+          <div className="col-sm-6">
             <div className="row">
               <Dropdown
                 placeholder="Matching score"
