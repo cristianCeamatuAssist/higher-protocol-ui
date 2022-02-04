@@ -96,7 +96,7 @@ export const JobDescriptionTab = () => {
     hard_skills,
     soft_skills,
   } = data
-  
+
   return (
     <div className="container bigger-space">
       <div className="row margin-tb-sm">
@@ -171,78 +171,76 @@ export const JobDescriptionTab = () => {
         </div>
       </div>
 
-      <div className="row">
-        <div className="col-6">
-          <div className="row margin-tb-sm ">
-            <span className="big_label">Matching candidate</span>
-          </div>
-
-          <div className="row margin-tb-sm w-100">
-            <div className="col-sm-6">
-              <span className="subtitle">Hard Skills</span>
-              <div className="row-candidate">
-                <span>Kotlin</span>{' '}
-                <ReactStars
-                  {...starSettings}
-                  edit={true}
-                  value={hard_skills.kotlin}
-                  onChange={(value) => changeSkillHandler('hard_skills', 'kotlin', value)}
-                />
-              </div>
-              <div className="row-candidate">
-                <span>Android</span>{' '}
-                <ReactStars
-                  {...starSettings}
-                  edit={true}
-                  value={hard_skills.android}
-                  onChange={(value) => changeSkillHandler('hard_skills', 'android', value)}
-                />
-              </div>
-              <div className="row-candidate">
-                <span>New+</span> <ReactStars {...starSettings} />
-              </div>
-            </div>
-
-            <div className="col-sm-6">
-              <span className="subtitle">Soft Skills</span>
-              <div className="row-candidate">
-                <span>Communication</span>{' '}
-                <ReactStars
-                  {...starSettings}
-                  edit={true}
-                  value={soft_skills.communication}
-                  onChange={(value) => changeSkillHandler('soft_skills', 'communication', value)}
-                />
-              </div>
-              <div className="row-candidate">
-                <span>Teamwork</span>{' '}
-                <ReactStars
-                  {...starSettings}
-                  edit={true}
-                  value={soft_skills.teamwork}
-                  onChange={(value) => changeSkillHandler('soft_skills', 'teamwork', value)}
-                />
-              </div>
-              <div className="row-candidate">
-                <span>New+</span> <ReactStars {...starSettings} />
-              </div>
-            </div>
-          </div>
+      <div className="row mb-4">
+        <div className="row margin-tb-sm ">
+          <span className="big_label">Matching candidate</span>
         </div>
 
-        <div className="col-6">
-          <div className="row my-3">
-            <span className="big_label">Candidate score</span>
+        <div className="row">
+          <div className="col-sm-4">
+            <span className="subtitle">Hard Skills</span>
+            <div className="row-candidate">
+              <span>Kotlin</span>{' '}
+              <ReactStars
+                {...starSettings}
+                edit={true}
+                value={hard_skills.kotlin}
+                onChange={(value) => changeSkillHandler('hard_skills', 'kotlin', value)}
+              />
+            </div>
+            <div className="row-candidate">
+              <span>Android</span>{' '}
+              <ReactStars
+                {...starSettings}
+                edit={true}
+                value={hard_skills.android}
+                onChange={(value) => changeSkillHandler('hard_skills', 'android', value)}
+              />
+            </div>
+            <div className="row-candidate">
+              <span>New+</span> <ReactStars {...starSettings} />
+            </div>
           </div>
 
-          <div className="row">
-            <Dropdown
-              placeholder="Matching score"
-              values={scoreOptions}
-              value={candidate_score}
-              name="candidate_score"
-              onChange={handleChange}
-            />
+          <div className="col-sm-4">
+            <span className="subtitle">Soft Skills</span>
+            <div className="row-candidate">
+              <span>Communication</span>{' '}
+              <ReactStars
+                {...starSettings}
+                edit={true}
+                value={soft_skills.communication}
+                onChange={(value) => changeSkillHandler('soft_skills', 'communication', value)}
+              />
+            </div>
+            <div className="row-candidate">
+              <span>Teamwork</span>{' '}
+              <ReactStars
+                {...starSettings}
+                edit={true}
+                value={soft_skills.teamwork}
+                onChange={(value) => changeSkillHandler('soft_skills', 'teamwork', value)}
+              />
+            </div>
+            <div className="row-candidate">
+              <span>New+</span> <ReactStars {...starSettings} />
+            </div>
+          </div>
+
+          <div className="col-sm-4">
+            <div className="row my-3">
+              <span className="big_label">Candidate score</span>
+            </div>
+
+            <div className="row">
+              <Dropdown
+                placeholder="Matching score"
+                values={scoreOptions}
+                value={candidate_score}
+                name="candidate_score"
+                onChange={handleChange}
+              />
+            </div>
           </div>
         </div>
       </div>

@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import styled from 'styled-components'
 import ReactTooltip from 'react-tooltip'
 import company_logousv from 'assets/images/company_logo-usv.png'
@@ -12,23 +11,11 @@ import checkmarkwaiting from 'assets/images/checkmark-waiting.png'
 import { BlockCertification } from 'components'
 
 export const Experience = ({ experience }) => {
-  const [show, setShow] = useState(false)
-
-  const toggleShow = () => setShow((state) => !state)
   return (
     <StyledDiv>
       <div className="logo">
-        {experience.logo === 'usv' && <div className={`company-logo ${experience.logo}`} />}
-        {experience.logo !== 'usv' && <div className={`company-logo ${experience.logo}`} />}
-        {/* <Div onClick={toggleShow}>
-          <div className={`p-relative checkmark ${experience.checked ? 'waiting' : 'checked'}`} />
-          {show && (
-            <div className="certification">
-              {' '}
-              <BlockCertification />
-            </div>
-          )}
-        </Div> */}
+        {experience.logo === 'usv' && <div className={`company-logo`} />}
+        {experience.logo !== 'usv' && <div className={`company-logo`} />}
         <div
           data-tip
           data-for="global"
@@ -72,12 +59,14 @@ export const Experience = ({ experience }) => {
 
 const StyledDiv = styled.div`
   display: flex;
+  position: relative;
 
   &:not(:last-child) {
     margin-bottom: 36px;
   }
 
   .logo {
+    position: relative;
     .company-logo {
       background: url(${company_logousv}) center no-repeat #eef0f3;
       height: 56px;
