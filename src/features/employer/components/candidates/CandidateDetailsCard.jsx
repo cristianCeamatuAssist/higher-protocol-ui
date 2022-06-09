@@ -5,14 +5,21 @@ import CalendarSrc from 'assets/images/calendar.png'
 import MailSrc from 'assets/images/mail.png'
 import PhoneSrc from 'assets/images/phone.png'
 import AddressSrc from 'assets/images/address.png'
+import { ReactComponent as PencilSimple } from 'assets/icons/PencilSimple.svg'
 // features
 import { avatarsArray, getRandomNumber, CandidateMatchScore } from 'features/employer'
+import { Form } from 'react-bootstrap'
 
-export const CandidateDetailsCard = ({ candidate }) => {
+export const CandidateDetailsCard = ({ candidate, isEditable }) => {
   const { match_score, first_name, last_name, position } = candidate
 
   return (
     <StyledDiv>
+      {isEditable && (
+        <div className="edit-icon">
+          <PencilSimple />
+        </div>
+      )}
       <div className="details-small">
         <div className="user-info">
           <div className="user-picture">
@@ -63,6 +70,17 @@ export const CandidateDetailsCard = ({ candidate }) => {
             </div>
           </div>
         </div>
+
+        <div className="contact-details">
+          <h4>Visibility</h4>
+
+          <div className="d-flex justify-content-between align-items-center">
+            <div className="visibility-label">Default switch checkbox input</div>
+            <Form>
+              <Form.Check type="switch" id="custom-switch" defaultChecked={true} />
+            </Form>
+          </div>
+        </div>
       </div>
     </StyledDiv>
   )
@@ -76,6 +94,22 @@ export const StyledDiv = styled.div`
   background: #ffffff;
   box-shadow: 0 4px 0 rgba(62, 73, 84, 0.04);
   height: fit-content;
+  position: relative;
+
+  .edit-icon {
+    position: absolute;
+    right: 2rem;
+  }
+
+  .visibility-label {
+    font-size: 13px;
+    line-height: 20px;
+  }
+
+  .form-check-input {
+    width: 3.125rem;
+    height: 1.5rem;
+  }
 
   .user-info {
     .user-picture {
@@ -144,6 +178,7 @@ export const StyledDiv = styled.div`
 
   .contact-logos {
     display: inline-flex;
+    margin-bottom: 2rem;
 
     button {
       width: 40px;
@@ -173,9 +208,11 @@ export const StyledDiv = styled.div`
   }
 
   .contact-details {
-    margin-top: 60px;
-    //margin-left: 24px;
     text-align: left;
+
+    &:not(:last-child) {
+      margin-bottom: 1rem;
+    }
 
     p {
       margin-left: 14px;
@@ -185,6 +222,7 @@ export const StyledDiv = styled.div`
       font-size: 18px;
       font-weight: 600;
       line-height: 27px;
+      margin-bottom: 0;
     }
 
     .email {

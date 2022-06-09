@@ -21,6 +21,7 @@ import {
   CreateJob,
   routes,
 } from 'pages'
+import { CandidateProfilePage } from './Candidates/CandidateProfilePage'
 
 export const Router = () => {
   // global state
@@ -50,6 +51,7 @@ export const Router = () => {
         <Route path="/statistics" element={<Statistics />} />
         <Route path="/messages" element={<Messages />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/my_profile" element={<CandidateProfilePage />} />
       </Route>
       <Route path="*" element={<Navigate replace to="/dashboard" />} />
     </Routes>

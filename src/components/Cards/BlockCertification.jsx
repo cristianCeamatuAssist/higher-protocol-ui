@@ -20,7 +20,7 @@ export const BlockCertification = ({ hashLink, hashName, title, subtitle, author
         <p className="detail">
           Hash:{' '}
           <a className="detail-value" rel="noreferrer" href={hashLink} target="_blank">
-            {hashName}
+            {hashName || '91f220ac8300ac1af2e3a93d1555c6de4f71c8ec9925f3cb187fe181ec...'}
           </a>
           <i className="copy-hash" />
         </p>

@@ -45,7 +45,7 @@ export const Login = () => {
       <div id="login-page_form">
         <Logo />
         <div id="description">
-          <p>A high volume recruitment platform based on BLOCKCHAIN</p>
+          <h1>The professional network for maritime qualified workers</h1>
           <p className="helper-text">Welcome back! Please login to your account.</p>
         </div>
         <form id="login-form" className="shadow-none">
@@ -142,6 +142,15 @@ const StyledDiv = styled.div`
   font-family: Poppins, 'Droid Sans', 'Helvetica Neue', sans-serif;
   background-color: white;
   overflow: hidden;
+
+  h1 {
+    font-family: 'Poppins', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 54px;
+    color: #4401d4;
+  }
 
   @media (max-width: 1024px) {
     grid-template-columns: 1fr;

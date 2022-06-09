@@ -8,6 +8,7 @@ import AssessIcon from 'assets/images/assess.png'
 import ProfilesIcon from 'assets/images/profiles.png'
 import StatisticsIcon from 'assets/images/statistics.png'
 import CandidatesIcon from 'assets/images/candidates-logo.png'
+import ProfileIcon from 'assets/icons/UserIcon.svg'
 import JobsIcon from 'assets/images/jobs-logo.png'
 // utils
 import { capitalize } from 'utils'
@@ -24,7 +25,12 @@ export const Sidebar = ({ items }) => {
           return (
             <NavLink to={`/${item}`} key={item} className="menu-item" activeClassName="active">
               <div className={`menu-item_logo ${item}-logo`} />
-              <span>{capitalize(item)}</span>
+              <span>
+                {item
+                  .split('_')
+                  .map((el) => capitalize(el))
+                  .join(' ')}
+              </span>
             </NavLink>
           )
         })}
@@ -84,11 +90,11 @@ const StyledDiv = styled.div`
           height: 23px;
         }
 
-        &.candidates-logo {
+        &.candidates-logo, &.search_job-logo {
           background: url(${CandidatesIcon});
         }
 
-        &.jobs-logo {
+        &.jobs-logo, &.applications-logo {
           background: url(${JobsIcon});
         }
 
@@ -106,6 +112,10 @@ const StyledDiv = styled.div`
 
         &.statistics-logo {
           background: url(${StatisticsIcon});
+        }
+
+        &.my_profile-logo {
+          background: url(${ProfileIcon});
         }
       }
 

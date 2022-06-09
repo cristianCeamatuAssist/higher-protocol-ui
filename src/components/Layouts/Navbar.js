@@ -1,8 +1,7 @@
 import styled from 'styled-components'
-import { useNavigate, useLocation, Link, matchPath } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { Button as BsButton } from 'react-bootstrap'
-import { get } from 'lodash'
 // styles and assets
 import LogoSmall from 'assets/images/logo-small.png'
 import SearchLogo from 'assets/images/search-bar-logo.png'
@@ -40,7 +39,7 @@ export const Navbar = () => {
   // )
 
   // variables
-  const breadCrump = location.pathname.slice(1)
+  const breadCrump = location.pathname.slice(1).split('_').join(' ')
 
   return (
     <StyledDiv>
@@ -103,6 +102,7 @@ const StyledDiv = styled.div`
       line-height: 60px;
       margin-left: 75px;
       margin-bottom: 0;
+      white-space: nowrap;
     }
   }
 
